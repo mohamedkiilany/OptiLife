@@ -252,21 +252,12 @@ class _AvailableTimeScreenState extends State<AvailableTimeScreen> {
                     },
                     child: const Icon(Icons.arrow_back),
                   ),
-                  const Text(
-                    'Wizard Step 2 Available Time',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                  const Text('Wizard Step 2 Available Time',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   Row(
                     children: [
                       const Icon(Icons.help_outline),
-                      const SizedBox(width: 12),
-                      Text(
-                        'Skip',
-                        style: TextStyle(
-                          color: darkGreen,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                       const SizedBox(width: 12),
                       CircleAvatar(
                         backgroundColor: darkGreen,
