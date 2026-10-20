@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
+import 'package:optilife_app/core/theme/app_colors.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
-
-  static const _navy = Color(0xFF17243D);
-  static const _green = Color.fromARGB(255, 19, 134, 67);
-  static const _muted = Color.fromARGB(255, 47, 52, 48);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +27,7 @@ class OnboardingScreen extends StatelessWidget {
                   const Text(
                     'OptiLife',
                     style: TextStyle(
-                      color: _navy,
+                      color: AppColors.navy,
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
@@ -48,7 +45,7 @@ class OnboardingScreen extends StatelessWidget {
                         'Plans fit your real time & life',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: _navy,
+                          color: AppColors.navy,
                           fontSize: 27,
                           height: 1.15,
                           fontWeight: FontWeight.bold,
@@ -61,7 +58,7 @@ class OnboardingScreen extends StatelessWidget {
                         'adapt to your constraints, not the other way around.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: _muted,
+                          color: AppColors.muted,
                           fontSize: 15,
                           height: 1.45,
                         ),
@@ -89,8 +86,8 @@ class OnboardingScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () => context.go(AppRouter.signin),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: _green,
-                      foregroundColor: Colors.white,
+                      backgroundColor:AppColors.primaryGreen,
+                      foregroundColor: AppColors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -98,7 +95,7 @@ class OnboardingScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        Text(' Let`s Start  ', style: TextStyle(fontSize: 20)),
+                        Text(' Let`s Start ', style: TextStyle(fontSize: 20)),
                         Icon(Icons.arrow_forward, size: 25),
                       ],
                     ),
@@ -135,7 +132,7 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 const Row(
                   children: [
-                    Icon(Icons.circle, color: _green, size: 14),
+                    Icon(Icons.circle, color: AppColors.primaryTeal, size: 14),
                     SizedBox(width: 8),
                     Text(
                       'ACTIVE ROUTINE',
@@ -172,7 +169,7 @@ class OnboardingScreen extends StatelessWidget {
                           Text(
                             'Gentle Morning Mobility',
                             style: TextStyle(
-                              color: _navy,
+                              color: AppColors.navy,
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                             ),
@@ -180,7 +177,7 @@ class OnboardingScreen extends StatelessWidget {
                           SizedBox(height: 4),
                           Text(
                             'Low-impact flow for quiet spaces',
-                            style: TextStyle(color: _muted),
+                            style: TextStyle(color: AppColors.muted),
                           ),
                         ],
                       ),
@@ -211,7 +208,7 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: Color(0xFF8DEDE0),
-                  child: Icon(Icons.tune, color: _navy),
+                  child: Icon(Icons.tune, color: AppColors.navy),
                 ),
                 SizedBox(width: 10),
                 Expanded(
@@ -221,20 +218,20 @@ class OnboardingScreen extends StatelessWidget {
                       Text(
                         'Effortless Micro-Steps',
                         style: TextStyle(
-                          color: _navy,
+                          color: AppColors.navy,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       Text(
                         'Calibrated for your exact energy',
-                        style: TextStyle(color: _muted),
+                        style: TextStyle(color: AppColors.muted),
                       ),
                     ],
                   ),
                 ),
                 CircleAvatar(
                   radius: 18,
-                  backgroundColor: _green,
+                  backgroundColor: AppColors.primaryGreen,
                   child: Icon(Icons.check, color: Colors.white),
                 ),
               ],

@@ -248,17 +248,18 @@ class _SignupScreenState extends State<SignupScreen> {
                 AuthPrimaryButton(
                   label: 'Create Account',
                   onPressed: () {
-                    if (!_acceptedTerms) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please accept the terms to continue.'),
-                        ),
-                      );
-                      return;
-                    }
-                    if (_formKey.currentState!.validate()) {
-                      context.go(AppRouter.home);
-                    }
+                    // if (_formKey.currentState!.validate()) {
+                    //    if (!_acceptedTerms) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(
+                    //       content: Text('Please accept the terms to continue.'),
+                    //     ),
+                    //   );
+                    //   return;
+                    // }
+                    //   context.go(AppRouter.goal);
+                    // }
+                    context.go(AppRouter.goal);
                   },
                 ),
                 const SizedBox(height: 15),
@@ -321,10 +322,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       const Text(
                         'Already have an account?',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: AppColors.muted,
-                        ),
+                        style: TextStyle(fontSize: 17, color: AppColors.muted),
                       ),
                       TextButton(
                         onPressed: () => context.go(AppRouter.signin),
@@ -333,7 +331,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.primaryTeal
+                            color: AppColors.primaryTeal,
                           ),
                         ),
                       ),
