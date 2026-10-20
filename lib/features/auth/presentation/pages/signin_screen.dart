@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
-
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_form_widgets.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_input_field.dart';
@@ -79,9 +78,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Text(
                   'Sign in to continue your personalized wellness plan.',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                     height: 1.5,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w400,
                     color: AppColors.muted,
                   ),
                 ),
@@ -89,29 +88,29 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(height: 22),
               authFieldLabel('Email address'),
               AuthInputField(
-                  controller: _emailController,
-                  hint: 'you@example.com',
-                  icon: Icons.mail_outline_rounded,
-                  keyboardType: TextInputType.emailAddress,
+                controller: _emailController,
+                hint: 'you@example.com',
+                icon: Icons.mail_outline_rounded,
+                keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 15),
               authFieldLabel('Password'),
               AuthInputField(
-                  controller: _passwordController,
-                  hint: 'Password',
-                  icon: Icons.lock_outline_rounded,
-                  obscure: _obscurePassword,
-                  trailing: IconButton(
-                    onPressed: () =>
-                        setState(() => _obscurePassword = !_obscurePassword),
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                    ),
-                    color: const Color(0xFF718071),
+                controller: _passwordController,
+                hint: 'Password',
+                icon: Icons.lock_outline_rounded,
+                obscure: _obscurePassword,
+                trailing: IconButton(
+                  onPressed: () =>
+                      setState(() => _obscurePassword = !_obscurePassword),
+                  icon: Icon(
+                    _obscurePassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                   ),
+                  color: const Color(0xFF718071),
                 ),
+              ),
               const SizedBox(height: 8),
               Row(
                 children: [
@@ -125,49 +124,50 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: TextStyle(
                       color: AppColors.primaryTeal,
                       fontWeight: FontWeight.w500,
+                      fontSize: 16,
                     ),
                   ),
                   const Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Forgot password?',
-                      style: TextStyle(
-                        color: AppColors.primaryTeal,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () {},
+                  //   child: const Text(
+                  //     'Forgot password?',
+                  //     style: TextStyle(
+                  //       color: AppColors.primaryTeal,
+                  //       fontWeight: FontWeight.w600,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 20),
               AuthPrimaryButton(
                 label: 'Log In',
                 onPressed: () => context.go(AppRouter.home),
               ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(color: AppColors.bgLight, thickness: 1),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      'OR CONTINUE WITH',
-                      style: TextStyle(
-                        color: AppColors.muted,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(color: AppColors.bgLight, thickness: 1),
-                  ),
-                ],
-              ),
+              const SizedBox(height: 20),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: Divider(color: AppColors.bgLight, thickness: 1),
+              //     ),
+              //     // Padding(
+              //     //   padding: const EdgeInsets.symmetric(horizontal: 12),
+              //     //   child: Text(
+              //     //     'OR CONTINUE WITH',
+              //     //     style: TextStyle(
+              //     //       color: AppColors.muted,
+              //     //       fontSize: 12,
+              //     //       fontWeight: FontWeight.w600,
+              //     //       letterSpacing: 0.5,
+              //     //     ),
+              //     //   ),
+              //     // ),
+              //     // Expanded(
+              //     //   child: Divider(color: AppColors.bgLight, thickness: ),
+              //     // ),
+              //   ],
+              // ),
               // Column(
               //   children: [
               //     SizedBox(
@@ -222,21 +222,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   const Text(
                     "Don't have an account?",
-                    style: TextStyle(color: AppColors.muted),
+                    style: TextStyle(color: AppColors.muted, fontSize: 17),
                   ),
                   TextButton(
-                    onPressed: ()=> context.go(AppRouter.signup),
+                    onPressed: () => context.go(AppRouter.signup),
                     child: const Text(
                       'Sign up',
                       style: TextStyle(
                         color: AppColors.primaryTeal,
                         fontWeight: FontWeight.bold,
+                        fontSize: 17,
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
             ],
           ),
         ),

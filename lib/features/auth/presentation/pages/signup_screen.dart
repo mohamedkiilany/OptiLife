@@ -58,11 +58,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 const Text(
                   'Create your account',
                   style: TextStyle(
-                    fontSize: 45,
+                    fontSize: 40,
                     height: 1.1,
                     fontWeight: FontWeight.w800,
-                    letterSpacing: -1,
-                
+                    letterSpacing: 1,
                     color: AppColors.navy,
                   ),
                 ),
@@ -72,6 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: TextStyle(
                     fontSize: 17,
                     height: 1.5,
+                    fontWeight: FontWeight.w400,
                     color: AppColors.muted,
                   ),
                 ),
@@ -262,79 +262,75 @@ class _SignupScreenState extends State<SignupScreen> {
                   },
                 ),
                 const SizedBox(height: 15),
-                Row(
-                  children: [
-                    const Expanded(child: Divider(color: Color(0xFFDDE3FF))),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
-                      child: Text(
-                        'Or Register With',
-                        style: TextStyle(
-                          color: const Color(0xFF718071),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Divider(color: Color(0xFFDDE3FF))),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                SizedBox(
-                  width: double.infinity,
-                  height: 68,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: AppColors.navy,
-                      side: BorderSide.none,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(17),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'G',
-                          style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xFF4285F4),
-                          ),
-                        ),
-                        SizedBox(width: 12),
-                        Text(
-                          'Sign up with Google',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
+                // Row(
+                //   children: [
+                //     const Expanded(child: Divider(color: Color(0xFFDDE3FF))),
+                //     Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 14),
+                //       child: Text(
+                //         'Or Register With',
+                //         style: TextStyle(
+                //           color: const Color(0xFF718071),
+                //           fontWeight: FontWeight.w600,
+                //         ),
+                //       ),
+                //     ),
+                //     const Expanded(child: Divider(color: Color(0xFFDDE3FF))),
+                //   ],
+                // ),
+
+                // SizedBox(
+                //   width: double.infinity,
+                //   height: 68,
+                //   child: OutlinedButton(
+                //     onPressed: () {},
+                //     style: OutlinedButton.styleFrom(
+                //       backgroundColor: Colors.white,
+                //       foregroundColor: AppColors.navy,
+                //       side: BorderSide.none,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(17),
+                //       ),
+                //     ),
+                //     child: const Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         Text(
+                //           'G',
+                //           style: TextStyle(
+                //             fontSize: 26,
+                //             fontWeight: FontWeight.w800,
+                //             color: Color(0xFF4285F4),
+                //           ),
+                //         ),
+                //         SizedBox(width: 12),
+                //         Text(
+                //           'Sign up with Google',
+                //           style: TextStyle(
+                //             fontSize: 18,
+                //             fontWeight: FontWeight.w700,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 Center(
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         'Already have an account?',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Color(0xFF4B584D),
-                        ),
+                        style: TextStyle(fontSize: 17, color: AppColors.muted),
                       ),
                       TextButton(
                         onPressed: () => context.go(AppRouter.signin),
                         child: const Text(
                           'Log in',
                           style: TextStyle(
-                            fontSize: 19,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xFF007A3D),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryTeal,
                           ),
                         ),
                       ),
