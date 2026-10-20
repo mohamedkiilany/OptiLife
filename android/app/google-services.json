@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1024665823152",
+    "project_id": "optilife-c73b7",
+    "storage_bucket": "optilife-c73b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024665823152:android:c47576996d4272ad85d875",
+        "android_client_info": {
+          "package_name": "com.example.optilife_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0pLb3a46ZJ9eI5rlImt6ysz3ce54TNA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
