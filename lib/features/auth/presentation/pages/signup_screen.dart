@@ -321,7 +321,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       const Text(
                         'Already have an account?',
-                        style: TextStyle(fontSize: 17, color: AppColors.muted),
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: AppColors.muted,
+                        ),
                       ),
                       TextButton(
                         onPressed: () => context.go(AppRouter.signin),
@@ -330,7 +333,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.primaryTeal,
+                            color: AppColors.primaryTeal
                           ),
                         ),
                       ),
