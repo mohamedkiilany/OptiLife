@@ -20,4 +20,10 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+import 'package:optilife_app/app.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(const App());
 }

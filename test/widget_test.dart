@@ -7,15 +7,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:optilife_app/main.dart';
+import 'package:optilife_app/app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const App());
 
-    // Verify that our counter starts at 0.
+    // The splash screen transitions to onboarding before the home screen.
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump(const Duration(milliseconds: 350));
+    expect(find.text('Lifestyle Discovery'), findsOneWidget);
+
+    await tester.ensureVisible(find.text('Next  →'));
+    await tester.tap(find.text('Next  →'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Flutter Demo Home Page'), findsOneWidget);
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);
 
