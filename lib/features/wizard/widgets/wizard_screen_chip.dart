@@ -4,6 +4,7 @@ import 'package:optilife_app/core/theme/app_colors.dart';
 class WizardScreenChip extends StatelessWidget {
   final IconData icon;
   final String text;
+
   const WizardScreenChip({
     super.key,
     required this.icon,
@@ -20,11 +21,12 @@ class WizardScreenChip extends StatelessWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(icon, color: AppColors.screenChipText),
           Text(
             text,
-            style: TextStyle(color: AppColors.screenChipText),
+            style: TextStyle(color: AppColors.primaryTeal,fontWeight: FontWeight.bold),
           ),
         ],
       ),

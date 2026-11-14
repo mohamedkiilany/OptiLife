@@ -183,7 +183,21 @@ class _AvailableTimeScreenState extends State<AvailableTimeScreen> {
               ),
             ),
           ),
-          ProgressContinueButton(onPressed: () {}),
+          ProgressContinueButton(
+            onPressed: () {
+              if (!_selection.hasSelection) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(seconds: 1),
+                    content: const Text('Please select available time first'),
+                    backgroundColor: AppColors.primaryTeal,
+                  ),
+                );
+                return;
+              }
+              context.go(AppRouter.training);
+            },
+          ),
         ],
       ),
     ),

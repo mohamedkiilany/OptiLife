@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
+import 'package:optilife_app/features/wizard/screens/wizard_step_3.dart';
+import 'package:optilife_app/features/wizard/screens/wizard_step_4.dart';
 import '../../features/onboarding/presentation/pages/onboarding_screen.dart';
 import '../../features/onboarding/presentation/pages/splash_screen.dart';
 import '../../features/auth/presentation/pages/signin_screen.dart';
@@ -16,6 +18,8 @@ class AppRouter {
   static const String home = '/home';
   static const String goal = '/goal';
   static const String availableTime = '/time';
+  static const String training = '/training';
+  static const String equipment = '/equipment';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -30,7 +34,12 @@ class AppRouter {
       GoRoute(path: signup, builder: (context, state) => const SignupScreen()),
       GoRoute(path: home, builder: (context, state) => const HomePage()),
       GoRoute(path: goal, builder: (context, state) => const GoalsScreen()),
-      GoRoute(path: availableTime, builder: (context, state) => const AvailableTimeScreen()),
+      GoRoute(
+        path: availableTime,
+        builder: (context, state) => const AvailableTimeScreen(),
+      ),
+      GoRoute(path: training, builder: (context, state) => const TrainingEnv()),
+      GoRoute(path: equipment, builder: (context, state) => const Equipment()),
     ],
   );
 }
