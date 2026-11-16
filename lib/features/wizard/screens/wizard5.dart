@@ -1,569 +1,220 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/project/Wizard6.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:go_router/go_router.dart';
+import 'package:optilife_app/core/router/app_router.dart';
+import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
+import 'package:optilife_app/features/wizard/widgets/budget_card.dart';
+import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
 
-class Wizard5 extends StatefulWidget {
-  Wizard5({super.key});
+class Budget extends StatefulWidget {
+  const Budget({super.key});
 
   @override
-  State<Wizard5> createState() => _Wizard5State();
+  State<Budget> createState() => _BudgetState();
 }
 
-class _Wizard5State extends State<Wizard5> {
+class _BudgetState extends State<Budget> {
+  String? selectedBudget;
+
+  void _selectBudget(String title) {
+    setState(() => selectedBudget = title);
+  }
+
   @override
-  bool selected = false;
-  bool selected2 = false;
-  bool selected3 = false;
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF4F5FF),
-      appBar: AppBar(
-        title: Text("Wizard step 5 Food Budget"),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.info)),
-          TextButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Wizard6();
-                },));}, child: Text("Skip")),
-          IconButton(onPressed: () {}, icon: Icon(Icons.person)),
-        ],
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: 12,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'What'
-                's your grocery budget?',
-                style: TextStyle(color: Color(0xFF0F172A)),
+      backgroundColor: AppColors.backgroundColor,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => context.go(AppRouter.equipment),
+                    child: const Icon(Icons.arrow_back),
+                  ),
+                  const SizedBox(width: 20),
+                  const Text(
+                    'Step 5 Food Budget',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
               ),
-              Text(
-                "We recommend ingredients you can actually afford withou breaking the bank.",
-                style: TextStyle(color: Color(0xFF475569)),
-              ),
-
-              // ---------------- CARD 1 ----------------
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    selected = !selected;
-                    selected2 = false;
-                    selected3 = false;
-                  });
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: selected ? Color(0xFF22C55E) : Colors.transparent,
-                      width: 2.5,
-                    ),
-                  ),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 12,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 8,
-                        children: [
-                          Icon(
-                            LucideIcons.circleDollarSign,
-                            color: Color(0xFF15803D),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Budget-Conscious",
-                                  style: TextStyle(color: Color(0xFF0F172A)),
-                                ),
-                                Text(
-                                  "Maximum Value Per Dollar",
-                                  style: TextStyle(color: Color(0xFF15803D)),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          selected
-                              ? CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xFF22C55E),
-                                  child: Icon(
-                                    LucideIcons.check,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              : CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xFFE0E4FF),
-                                ),
-                        ],
-                      ),
-
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 8,
-                        children: [
-                          Text(
-                            r'$30 – $50',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Color(0xFF0F172A),
-                            ),
-                          ),
-                          Text(
-                            '/ week',
-                            style: TextStyle(color: Color(0xFF334155)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFFE3C2),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r'~$2.00–$3.50 / meal',
-                              style: TextStyle(color: Color(0xFF92400E)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Focuses on bulk staples, canned beans, seasonal vegetables, eggs, and smart protein swaps.',
-                        style: TextStyle(color: Color(0xFF334155)),
-                      ),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r' Saves ~$210/mo',
-                              style: TextStyle(color: Color(0xFF0F172A)),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r' Bulk-Friendly',
-                              style: TextStyle(color: Color(0xFF0F172A)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              // ---------------- CARD 2 ----------------
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    selected2 = !selected2;
-                    selected = false;
-                    selected3 = false;
-                  });
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: selected2 ? Color(0xFF22C55E) : Colors.transparent,
-                      width: 2.5,
-                    ),
-                  ),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 12,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 8,
-                        children: [
-                          Icon(LucideIcons.wallet, color: Color(0xFF0F766E)),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Moderate & Flexible",
-                                  style: TextStyle(color: Color(0xFF0F172A)),
-                                ),
-                                Text(
-                                  "Most Popular Choice",
-                                  style: TextStyle(color: Color(0xFF475569)),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          selected2
-                              ? CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xFF22C55E),
-                                  child: Icon(
-                                    LucideIcons.check,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              : CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xFFE0E4FF),
-                                ),
-                        ],
-                      ),
-
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 8,
-                        children: [
-                          Text(
-                            r'$50 – $80',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Color(0xFF0F172A),
-                            ),
-                          ),
-                          Text(
-                            '/ week',
-                            style: TextStyle(color: Color(0xFF334155)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r'~$4.00–$6.50 / meal',
-                              style: TextStyle(color: Color(0xFF3B3F5C)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Balanced whole foods, poultry, fresh produce, and occasional specialty pantry items.',
-                        style: TextStyle(color: Color(0xFF334155)),
-                      ),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r' High Variety',
-                              style: TextStyle(color: Color(0xFF0F172A)),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r' Fresh Greens',
-                              style: TextStyle(color: Color(0xFF0F172A)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              // ---------------- CARD 3 ----------------
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    selected3 = !selected3;
-                    selected = false;
-                    selected2 = false;
-                  });
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: selected3 ? Color(0xFF22C55E) : Colors.transparent,
-                      width: 2.5,
-                    ),
-                  ),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 12,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 8,
-                        children: [
-                          Icon(
-                            LucideIcons.shoppingBag,
-                            color: Color(0xFFA16207),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Premium / Organic",
-                                  style: TextStyle(color: Color(0xFF0F172A)),
-                                ),
-                                Text(
-                                  "Cleanest Whole Sourcing",
-                                  style: TextStyle(color: Color(0xFF475569)),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          selected3
-                              ? CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xFF22C55E),
-                                  child: Icon(
-                                    LucideIcons.check,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              : CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xFFE0E4FF),
-                                ),
-                        ],
-                      ),
-
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 8,
-                        children: [
-                          Text(
-                            r'$80+',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Color(0xFF0F172A),
-                            ),
-                          ),
-                          Text(
-                            '/ week',
-                            style: TextStyle(color: Color(0xFF334155)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r'$7.00+ / meal',
-                              style: TextStyle(color: Color(0xFF3B3F5C)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Wild-caught fish, organic meats, specialty superfoods, and premium health items.',
-                        style: TextStyle(color: Color(0xFF334155)),
-                      ),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r' 100% Organic Priority',
-                              style: TextStyle(color: Color(0xFF0F172A)),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE8EAFF),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 5,
-                            width: 20,
-                            child: Text(
-                              r' Wild-Caught Sourced',
-                              style: TextStyle(color: Color(0xFF0F172A)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 15),
-              Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Color(0xFFEEF0FF),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Row(
+            ),
+            const LinearProgressIndicator(
+              value: 5 / 8,
+              color: AppColors.primaryGreen,
+              backgroundColor: AppColors.white,
+              minHeight: 5,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 12,
                   children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFE3C2),
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: Icon(
-                        LucideIcons.arrowLeftRight,
-                        color: Color(0xFF92400E),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const WizardScreenChip(
+                          icon: Icons.tune,
+                          text: 'BUDGET CALIBRATION',
+                        ),
+                        const Text(
+                          'Step 5 of 8',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    const Text(
+                      "What's your grocery budget?",
+                      style: TextStyle(
+                        color: AppColors.darkText,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 4,
-                        children: [
-                          Row(
-                            spacing: 8,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  "Smart Ingredient Swaps",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF854D0E),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFE0E4FF),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Text(
-                                  "ACTIVE",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color(0xFF475569),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "Our engine automatically suggests nutrient-dense, high-protein alternatives whenever a recipe ingredient exceeds your target meal budget.",
-                            style: TextStyle(
-                              height: 1.5,
-                              color: Color(0xFF475569),
-                            ),
-                          ),
-                        ],
+                    const Text(
+                      'We recommend ingredients you can actually afford without breaking the bank.',
+                      style: TextStyle(color: AppColors.muted, fontSize: 15),
+                    ),
+                    const SizedBox(height: 10),
+                    BudgetCard(
+                      title: 'Budget-Conscious',
+                      subtitle: 'Maximum Value Per Dollar',
+                      weeklyBudget: r'$30 – $50',
+                      mealBudget: r'~$2.00–$3.50 / meal',
+                      description: 'Focuses on bulk staples, canned beans, seasonal vegetables, eggs, and smart protein swaps.',
+                      tags: const ['Saves ~\$210/mo', 'Bulk-Friendly'],
+                      isSelected: selectedBudget == 'Budget-Conscious',
+                      onTap: () => _selectBudget('Budget-Conscious'),
+                    ),
+                    BudgetCard(
+                      title: 'Moderate & Flexible',
+                      subtitle: 'Most Popular Choice',
+                      weeklyBudget: r'$50 – $80',
+                      mealBudget: r'~$4.00–$6.50 / meal',
+                      description: 'Balanced whole foods, poultry, fresh produce, and occasional specialty pantry items.',
+                      tags: const ['High Variety', 'Fresh Greens'],
+                      isSelected: selectedBudget == 'Moderate & Flexible',
+                      onTap: () => _selectBudget('Moderate & Flexible'),
+                    ),
+                    BudgetCard(
+                      title: 'Premium / Organic',
+                      subtitle: 'Cleanest Whole Sourcing',
+                      weeklyBudget: r'$80+',
+                      mealBudget: r'$7.00+ / meal',
+                      description: 'Wild-caught fish, organic meats, specialty superfoods, and premium health items.',
+                      tags: const [
+                        '100% Organic Priority',
+                        'Wild-Caught Sourced',
+                      ],
+                      isSelected: selectedBudget == 'Premium / Organic',
+                      onTap: () => _selectBudget('Premium / Organic'),
+                    ),
+                    const SizedBox(height: 4),
+                    _SmartIngredientSwapsNotice(),
+                    // const SizedBox(height: 12),
+                  ],
+                ),
+              ),
+            ),
+            ProgressContinueButton(
+              onPressed: () {
+                if (selectedBudget == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      duration: Duration(seconds: 1),
+                      content: Text('Please select a grocery budget.'),
+                      backgroundColor: AppColors.primaryTeal,
+                    ),
+                  );
+                  return;
+                }
+                context.go(AppRouter.diet);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SmartIngredientSwapsNotice extends StatelessWidget {
+  const _SmartIngredientSwapsNotice();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEEF0FF),
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFE3C2),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: const Icon(Icons.swap_horiz, color: Color(0xFF92400E)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 8,
+                  runSpacing: 4,
+                  children: [
+                    const Text(
+                      'Smart Ingredient Swaps',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF854D0E),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE0E4FF),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Text(
+                        'ACTIVE',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFF475569),
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                    const Color.fromARGB(255, 11, 185, 17),
-                  ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Our engine automatically suggests nutrient-dense, high-protein alternatives whenever a recipe ingredient exceeds your target meal budget.',
+                  style: TextStyle(height: 1.5, color: Color(0xFF475569)),
                 ),
-                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Wizard6();
-                },));},
-                child: Text(
-                  "Continue →",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -6,7 +6,6 @@ import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_state.dart';
-import 'package:optilife_app/features/wizard/screens/wizard_step_3.dart';
 import 'package:optilife_app/features/wizard/widgets/adaptability_card.dart';
 import 'package:optilife_app/features/wizard/widgets/select_card.dart';
 import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
@@ -131,7 +130,7 @@ class _EquipmentState extends State<Equipment> {
                 ),
                 ProgressContinueButton(
                   onPressed: () {
-                    if (cubit.state.environments.isEmpty) {
+                    if (cubit.state.equipment==null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           duration: Duration(seconds: 1),
@@ -143,7 +142,7 @@ class _EquipmentState extends State<Equipment> {
                       );
                       return;
                     }
-                    context.go(AppRouter.equipment);
+                    context.go(AppRouter.budget);
                   },
                 ),
               ],

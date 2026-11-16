@@ -78,8 +78,9 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              // SizedBox(height: 20,)
               Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, bottom: 65),
+                padding: const EdgeInsets.only(left: 30, right: 30, bottom: 65,),
                 child: SizedBox(
                   width: double.infinity,
                   height: 60,
