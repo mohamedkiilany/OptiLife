@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,37 +19,16 @@ class TodaysConstraintsCard extends StatelessWidget {
     const budgetFg = Color(0xFF855300);
 
     final Map<String, Map<String, dynamic>> envLabels = {
-      'Home / Apartment': {
-        'emoji': '🏠',
-        'label': 'At Home',
-      },
-      'Commercial Gym': {
-        'emoji': '🏋️',
-        'label': 'Gym',
-      },
-      'Outdoors & Parks': {
-        'emoji': '🌳',
-        'label': 'Outdoors',
-      },
+      'Home / Apartment': {'emoji': '🏠', 'label': 'At Home'},
+      'Commercial Gym': {'emoji': '🏋️', 'label': 'Gym'},
+      'Outdoors & Parks': {'emoji': '🌳', 'label': 'Outdoors'},
     };
 
     final Map<String, Map<String, dynamic>> equipmentLabels = {
-      'None (Bodyweight Only)': {
-        'emoji': '🙌',
-        'label': 'No equipment',
-      },
-      'Dumbbells / Kettlebells': {
-        'emoji': '🏋️',
-        'label': 'Dumbbells',
-      },
-      'Resistance Bands': {
-        'emoji': '➰',
-        'label': 'Bands',
-      },
-      'Full Gym Equipment': {
-        'emoji': '🏢',
-        'label': 'Full gym',
-      },
+      'None (Bodyweight Only)': {'emoji': '🙌', 'label': 'No equipment'},
+      'Dumbbells / Kettlebells': {'emoji': '🏋️', 'label': 'Dumbbells'},
+      'Resistance Bands': {'emoji': '➰', 'label': 'Bands'},
+      'Full Gym Equipment': {'emoji': '🏢', 'label': 'Full gym'},
     };
 
     return Container(
@@ -68,19 +46,12 @@ class TodaysConstraintsCard extends StatelessWidget {
               const CircleAvatar(
                 backgroundColor: AppColors.screenchipBg,
                 radius: 14,
-                child: Icon(
-                  Icons.tune,
-                  color: AppColors.darkGreen,
-                  size: 20,
-                ),
+                child: Icon(Icons.tune, color: AppColors.darkGreen, size: 20),
               ),
               const SizedBox(width: 12),
               const Text(
                 "Today's Constraints",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
               ),
               const Spacer(),
               GestureDetector(
@@ -115,15 +86,15 @@ class TodaysConstraintsCard extends StatelessWidget {
           BlocBuilder<SelectionCubit, SelectionState>(
             builder: (context, state) {
               final List<Map<String, dynamic>> items = [
-                {
-                  'emoji': '⏱',
-                  'label': '20 min max',
-                  'background': neutralBg,
-                  'foreground': neutralFg,
-                },
+                if (state.availableMinutes != null)
+                  {
+                    'emoji': '⏱',
+                    'label': '${state.availableMinutes} min max',
+                    'background': neutralBg,
+                    'foreground': neutralFg,
+                  },
                 ...state.environments.map((e) {
                   final data = envLabels[e];
-
                   return {
                     'emoji': data?['emoji'] ?? '📍',
                     'label': data?['label'] ?? e,
@@ -131,16 +102,18 @@ class TodaysConstraintsCard extends StatelessWidget {
                     'foreground': AppColors.darkGreen,
                   };
                 }),
-                {
-                  'emoji': '💰',
-                  'label': 'Low budget (\$4.50 left )',
-                  'background': budgetBg,
-                  'foreground': budgetFg,
-                },
+                // if (state.budget != null)
+                //   {
+                //     'emoji': '💰',
+                //     'label': '\$${state.budget!.toStringAsFixed(2)} budget',
+                //     'background': budgetBg,
+                //     'foreground': budgetFg,
+                //   },
                 if (state.equipment != null)
                   {
                     'emoji': equipmentLabels[state.equipment]?['emoji'] ?? '🧰',
-                    'label': equipmentLabels[state.equipment]?['label'] ??
+                    'label':
+                        equipmentLabels[state.equipment]?['label'] ??
                         state.equipment!,
                     'background': neutralBg,
                     'foreground': neutralFg,
