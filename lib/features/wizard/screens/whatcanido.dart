@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optilife_app/features/wizard/widgets/whatcanidowidgets.dart';
 
 class Whatcanido extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class Whatcanido extends StatefulWidget {
 
 class _WhatcanidoState extends State<Whatcanido> {
   bool press = false;
-  bool press1=false;
+  bool press1 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,26 +21,33 @@ class _WhatcanidoState extends State<Whatcanido> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [Text('AVAILABLE TIME'), Text('custom duration')],
           ),
-          InkWell(
-            onTap: () {
-              setState(() {
-                press = !press;
-              });
-            },
-            child: press
-                ? Container(
-                    width: 20,
-                    height: 20,
-                    child: Column(children: [Text(data), Text(data)]),
-                  )
-                : Container(
-                    width: 20,
-                    height: 20,
-                    child: Column(children: [Text(data), Text(data)]),
-                  ),
+          Row(children: [Time_exrcersie(num: '10'),Time_exrcersie(num: '20'),Time_exrcersie(num: '30'),Time_exrcersie(num: '45+')],),
+          icon_text(
+            icon1: Icon(Icons.abc_outlined),
+            label: "current energy level",
           ),
-          Row(children: [Icon(icon), Text(data)]),
-        InkWell(child: Container(width: 120,height: 30,child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [Container(width:10 ,height: 10,child: Icon(icon),),Column(children: [Text(data),Text(data)],),press1 ? CircleAvatar():CircleAvatar()],),),)],
+          Container(
+            child: Column(
+              children: [
+                energy_lvl(
+                  eng: 'Low Energy',
+                  det: 'Gentle mobility & core restore',
+                  ic: Icon(Icons.abc_outlined),
+                ),
+                energy_lvl(
+                  eng: 'Normal',
+                  det: 'Moderate cardio & dynamic flow',
+                  ic: Icon(Icons.abc_outlined),
+                ),
+                energy_lvl(
+                  eng: 'High Energy',
+                  det: 'HIIT intervals & peak power',
+                  ic: Icon(Icons.abc_outlined),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
