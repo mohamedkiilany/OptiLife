@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 import 'package:optilife_app/features/progress/data/progress_options.dart';
 import 'package:optilife_app/features/progress/presentation/controllers/progress_selection_controller.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
@@ -194,6 +196,10 @@ class _AvailableTimeScreenState extends State<AvailableTimeScreen> {
                 );
                 return;
               }
+              const minutesByIndex = [10, 20, 30, 45];
+              context.read<SelectionCubit>().setAvailableMinutes(
+                minutesByIndex[_selection.selectedIndex!],
+              );
               context.go(AppRouter.training);
             },
           ),

@@ -32,4 +32,19 @@ class SelectionCubit extends Cubit<SelectionState> {
   void skipEnvironments(){
     emit(state.copyWith(environments: {}));
   }
+    void setAvailableMinutes(int minutes) {
+    emit(state.copyWith(availableMinutes: minutes));
+  }
+
+  // void setBudget(String budget) {
+  //   emit(state.copyWith(budget: budget));
+  // }
+
+  void skipAvailableMinutes() {
+    emit(state.copyWith(removeAvailableMinutes: true));
+  }
+
+  // void skipBudget() {
+  //   emit(state.copyWith(removeBudget: true));
+  // }
 }
