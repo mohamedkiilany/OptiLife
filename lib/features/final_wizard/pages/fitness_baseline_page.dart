@@ -143,8 +143,8 @@ class _FitnessBaselinePageState extends State<FitnessBaselinePage> {
                       InfoBox(
                         icon: Icons.tune,
                         iconSize: 24,
-                        backgroundColor: AppColors.screenchipBg.withOpacity(
-                          0.3,
+                        backgroundColor: AppColors.screenchipBg.withValues(
+                          alpha: 0.6,
                         ),
                         textColor: Color(0xff006F67),
                         borderRadius: 12,
