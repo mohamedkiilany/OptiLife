@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/features/final_wizard/pages/fitness_baseline_page.dart';
 import 'package:optilife_app/features/final_wizard/pages/food_avaialbility.dart';
+import 'package:optilife_app/features/home/presentation/pages/main_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_6.dart';
@@ -41,7 +42,8 @@ class AppRouter {
 
       GoRoute(path: signin, builder: (context, state) => const SignInScreen()),
       GoRoute(path: signup, builder: (context, state) => const SignupScreen()),
-      GoRoute(path: home, builder: (context, state) => const HomePage()),
+      // GoRoute(path: home, builder: (context, state) => const HomePage()),
+      GoRoute(path: home, builder: (context, state) => const MainScreen()),
       GoRoute(path: goal, builder: (context, state) => const GoalsScreen()),
       GoRoute(
         path: availableTime,
