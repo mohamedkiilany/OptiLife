@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/features/wizard/widgets/whatcanidowidgets.dart';
 
-class Whatcanido extends StatefulWidget {
+class WhatCanDo extends StatefulWidget {
   @override
-  State<Whatcanido> createState() => _WhatcanidoState();
+  State<WhatCanDo> createState() => _WhatcanidoState();
 }
 
-class _WhatcanidoState extends State<Whatcanido> {
+class _WhatcanidoState extends State<WhatCanDo> {
   String? selectedTime;
   String? selctenrgy;
   int numbermatch = 0;
