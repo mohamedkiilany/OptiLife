@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/auth/cubit/auth_cubit.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_form_widgets.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -54,6 +56,23 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                BlocListener<AuthCubit, AuthState>(
+                  listenWhen: (p, c) => p.status != c.status,
+                  listener: (context, state) {
+                    if (state.status == AuthStatus.success) {
+                      context.go(AppRouter.goal);
+                    } else if (state.status == AuthStatus.failure) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            state.message ?? 'Something went wrong.',
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: const SizedBox.shrink(),
+                ),
                 const SizedBox(height: 26),
                 const Text(
                   'Create your account',
@@ -248,18 +267,23 @@ class _SignupScreenState extends State<SignupScreen> {
                 AuthPrimaryButton(
                   label: 'Create Account',
                   onPressed: () {
-                    // if (_formKey.currentState!.validate()) {
-                    //    if (!_acceptedTerms) {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //     const SnackBar(
-                    //       content: Text('Please accept the terms to continue.'),
-                    //     ),
-                    //   );
-                    //   return;
-                    // }
-                    //   context.go(AppRouter.goal);
-                    // }
-                    context.go(AppRouter.goal);
+                    if (_formKey.currentState!.validate()) {
+                      if (!_acceptedTerms) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Please accept the terms to continue.',
+                            ),
+                          ),
+                        );
+                        return;
+                      }
+                      context.read<AuthCubit>().signUp(
+                        name: _nameController.text.trim(),
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text,
+                      );
+                    }
                   },
                 ),
                 const SizedBox(height: 15),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/profile/data/save_step.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
 import 'package:optilife_app/features/wizard/widgets/dislike_section.dart';
 import 'package:optilife_app/features/wizard/widgets/dite_preference_section.dart';
@@ -120,7 +121,9 @@ class _DietryState extends State<Dietry> {
                   );
                   return;
                 }
-                context.go(AppRouter.fitness);
+                context.saveAndGo({
+                  'dietPreferences': _selectedPreferences.toList(),
+                }, AppRouter.fitness);
               },
             ),
           ],

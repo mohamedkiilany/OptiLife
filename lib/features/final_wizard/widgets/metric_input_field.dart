@@ -9,8 +9,11 @@ class MetricInputField extends StatelessWidget {
     super.key,
     required this.label,
     required this.unit,
-    required this.initialValue,
+    required this.initialValue, 
+    this.onChanged,
   });
+  final ValueChanged<String>? onChanged;
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,7 @@ class MetricInputField extends StatelessWidget {
           child: Center(
             child: TextFormField(
               initialValue: initialValue,
+              onChanged: onChanged,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               style: const TextStyle(

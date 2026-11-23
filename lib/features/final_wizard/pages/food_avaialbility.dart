@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,8 +11,11 @@ import 'package:optilife_app/features/final_wizard/widgets/ingredient_list.dart'
 import 'package:optilife_app/features/final_wizard/widgets/no_stress_card.dart';
 import 'package:optilife_app/features/final_wizard/widgets/search_bar.dart';
 import 'package:optilife_app/features/final_wizard/widgets/selection_summary.dart';
+import 'package:optilife_app/features/profile/data/profile_repository.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_finish.dart';
 import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart'
+    as wizard;
 
 class FoodAvaialbility extends StatelessWidget {
   const FoodAvaialbility({super.key});
@@ -80,9 +84,9 @@ class FoodAvaialbility extends StatelessWidget {
                               ),
                             ],
                           ),
-          
+
                           const SizedBox(height: 16),
-          
+
                           const Text(
                             'What do you usually have in your kitchen?',
                             style: TextStyle(
@@ -92,7 +96,7 @@ class FoodAvaialbility extends StatelessWidget {
                               color: AppColors.darkText,
                             ),
                           ),
-          
+
                           const SizedBox(height: 8),
                           const Text(
                             'OptiLife builds meals around what you already buy and keep, slashing grocery costs.',
@@ -103,9 +107,9 @@ class FoodAvaialbility extends StatelessWidget {
                               height: 1.4,
                             ),
                           ),
-          
+
                           const SizedBox(height: 16),
-          
+
                           Container(
                             width: double.infinity,
                             height: 130,
@@ -121,25 +125,28 @@ class FoodAvaialbility extends StatelessWidget {
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) =>
                                       const ColoredBox(
-                                    color: AppColors.screenchipBg,
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.broken_image_outlined,
-                                        color: AppColors.primaryGreen,
-                                        size: 36,
+                                        color: AppColors.screenchipBg,
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.broken_image_outlined,
+                                            color: AppColors.primaryGreen,
+                                            size: 36,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
                                 ),
                                 const IgnorePointer(
                                   child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [Colors.transparent, Colors.black54],
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.black54,
+                                        ],
+                                      ),
                                     ),
-                                  ),
                                   ),
                                 ),
                                 Positioned(
@@ -171,7 +178,7 @@ class FoodAvaialbility extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 16),
-          
+
                           // Ingredient picker
                           const _SearchSection(),
                           const SizedBox(height: 16),
@@ -188,25 +195,51 @@ class FoodAvaialbility extends StatelessWidget {
                     ),
                   ),
                   ProgressFinish(
-                    onPressed: () {
-                      if (context.read<SelectionCubit>().state.category == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 1),
-                            content: Text('Please select at least one category.'),
-                            backgroundColor: AppColors.primaryTeal,
-                          ),
-                        );
+                    onPressed: () async {
+                      if (context.read<SelectionCubit>().state.category ==
+                          null) {
+                        
                         return;
                       }
-                      context.go(AppRouter.home);
+
+                      final user = FirebaseAuth.instance.currentUser!;
+                      final wizardState = context
+                          .read<wizard.SelectionCubit>()
+                          .state;
+                      final ingredients = context
+                          .read<SelectionCubit>()
+                          .state
+                          .selected;
+
+                      final profile = wizardState
+                          .copyWith(ingredients: ingredients)
+                          .toProfile(
+                            name: user.displayName ?? '',
+                            email: user.email ?? '',
+                          );
+
+                      try {
+                        await context.read<ProfileRepository>().saveOnboarding(
+                          user.uid,
+                          profile,
+                        );
+                        if (context.mounted) context.go(AppRouter.home);
+                      } catch (_) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Could not save. Try again.'),
+                            ),
+                          );
+                        }
+                      }
                     },
                   ),
                 ],
               ),
             ),
           );
-        }
+        },
       ),
     );
   }

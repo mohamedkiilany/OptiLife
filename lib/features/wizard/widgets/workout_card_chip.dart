@@ -15,7 +15,9 @@ class WorkoutCardChip extends StatelessWidget {
         color: AppColors.lightBlueBox,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Row(children: [chipLogo, Text(chipText)]),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [chipLogo, Text(chipText)]),
     );
   }
 }
