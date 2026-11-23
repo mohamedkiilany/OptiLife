@@ -13,7 +13,6 @@ import '../../features/onboarding/presentation/pages/onboarding_screen.dart';
 import '../../features/onboarding/presentation/pages/splash_screen.dart';
 import '../../features/auth/presentation/pages/signin_screen.dart';
 import '../../features/auth/presentation/pages/signup_screen.dart';
-import '../../features/home/presentation/pages/home_page.dart';
 
 class AppRouter {
   static const String splash = '/splash';

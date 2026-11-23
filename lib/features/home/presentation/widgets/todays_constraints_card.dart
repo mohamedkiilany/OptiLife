@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
-import 'package:optilife_app/features/home/presentation/widgets/info-chips.dart';
+import 'package:optilife_app/features/home/presentation/widgets/info_chips.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_state.dart';
 
@@ -15,8 +15,6 @@ class TodaysConstraintsCard extends StatelessWidget {
     const neutralBg = Color(0xFFEDEBFA);
     const neutralFg = Color(0xFF1F2937);
     const greenBg = Color(0xFFE3F4EE);
-    const budgetBg = Color(0xFFFFF1D6);
-    const budgetFg = Color(0xFF855300);
 
     final Map<String, Map<String, dynamic>> envLabels = {
       'Home / Apartment': {'emoji': '🏠', 'label': 'At Home'},

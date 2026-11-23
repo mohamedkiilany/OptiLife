@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Time_exrcersie extends StatelessWidget {
+class TimeExercies extends StatelessWidget {
   final String num;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const Time_exrcersie({
+  const TimeExercies({
     super.key,
     required this.num,
     required this.isSelected,
@@ -51,14 +51,14 @@ class Time_exrcersie extends StatelessWidget {
   }
 }
 
-class energy_lvl extends StatelessWidget {
+class EnergyLvl extends StatelessWidget {
   final String eng;
   final String det;
   final Icon ic;
   final VoidCallback ontap;
   final bool selectt;
 
-  energy_lvl({
+  const EnergyLvl({
     super.key,
     required this.eng,
     required this.det,
@@ -67,6 +67,7 @@ class energy_lvl extends StatelessWidget {
     required this.selectt,
   });
 
+@override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ontap,
@@ -108,14 +109,14 @@ class energy_lvl extends StatelessWidget {
   }
 }
 
-class icon_text extends StatelessWidget {
+class IconText extends StatelessWidget {
   final IconData icon1;
   final String label;
   final Color? coloric;
   final Color? colortext;
   final double? sizeeee;
   final double? width;
-  icon_text({
+ const IconText({
     super.key,
     required this.icon1,
     required this.label,
@@ -131,7 +132,7 @@ class icon_text extends StatelessWidget {
         Icon(icon1, color: coloric),
         SizedBox(width: width ?? 5),
         Text(
-          "$label",
+          label,
           style: TextStyle(color: colortext, fontSize: sizeeee),
         ),
       ],
@@ -139,7 +140,7 @@ class icon_text extends StatelessWidget {
   }
 }
 
-class todaymatches extends StatelessWidget {
+class ToDayMatches extends StatelessWidget {
   final String? imageUrl;
 
   final String title;
@@ -151,7 +152,7 @@ class todaymatches extends StatelessWidget {
   final String firstWelcome;
   final String secondWelcome;
 
-  const todaymatches({
+  const ToDayMatches({
     super.key,
     this.imageUrl,
     required this.title,
@@ -204,7 +205,7 @@ class todaymatches extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 200),
-                  icon_text(
+                  IconText(
                     icon1: Icons.energy_savings_leaf_outlined,
                     label: secondWelcome,
                   ),
@@ -213,7 +214,7 @@ class todaymatches extends StatelessWidget {
             ),
           ),
 
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -240,7 +241,7 @@ class todaymatches extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(1.0),
-                          child: icon_text(
+                          child: IconText(
                             icon1: Icons.timer_3_outlined,
                             label: duration,
                           ),
@@ -255,7 +256,7 @@ class todaymatches extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(1),
-                          child: icon_text(icon1: Icons.home, label: level),
+                          child: IconText(icon1: Icons.home, label: level),
                         ),
                       ),
 
@@ -267,7 +268,7 @@ class todaymatches extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(1.0),
-                          child: icon_text(
+                          child: IconText(
                             icon1: Icons.run_circle,
                             label: category,
                           ),
@@ -282,7 +283,7 @@ class todaymatches extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(1),
-                          child: icon_text(
+                          child: IconText(
                             icon1: Icons.energy_savings_leaf_outlined,
                             label: calories,
                           ),
