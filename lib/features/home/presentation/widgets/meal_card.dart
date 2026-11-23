@@ -11,6 +11,7 @@ class MealCard extends StatelessWidget {
   final String tag;
   final bool selected;
   final VoidCallback? onTap;
+  final VoidCallback? onDetailsTap;
 
   const MealCard({
     super.key,
@@ -23,18 +24,22 @@ class MealCard extends StatelessWidget {
     required this.tag,
     this.selected = false,
     this.onTap,
+    this.onDetailsTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: onDetailsTap,
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
       width: 240,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 3),
           ),
@@ -59,7 +64,7 @@ class MealCard extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.92),
+                    color: Colors.white.withValues(alpha: 0.92),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -167,6 +172,7 @@ class MealCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

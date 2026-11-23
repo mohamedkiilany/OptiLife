@@ -174,7 +174,7 @@ class _WorkoutImage extends StatelessWidget {
         Image.asset(
           image,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => Container(
+          errorBuilder: (_, _, _) => Container(
             color: const Color(0xFFE4EEE5),
             child: const Icon(Icons.fitness_center, size: 48, color: Color(0xFF007333)),
           ),

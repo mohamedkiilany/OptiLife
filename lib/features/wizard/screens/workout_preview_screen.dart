@@ -36,7 +36,7 @@ class WorkoutPreviewScreen extends StatelessWidget {
                 image!,
                 height: 220,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const SizedBox(
+                errorBuilder: (_, _, _) => const SizedBox(
                   height: 220,
                   child: Center(child: Icon(Icons.fitness_center, size: 48)),
                 ),

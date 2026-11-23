@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:optilife_app/features/home/presentation/widgets/meal_detail_components.dart';
 
 class MealDetailsPage extends StatefulWidget {
-  const MealDetailsPage({super.key});
+  const MealDetailsPage({
+    super.key,
+    this.image = 'assets/images/food.jpeg',
+    this.category = 'BALANCED PLATE • QUICK PREP',
+    this.title = 'Mediterranean Herb Salmon & Quinoa Bowl',
+    this.prepMinutes = 15,
+    this.cost = 3.85,
+    this.calories = 480,
+    this.satiety = 'High Satiety',
+  });
+
+  final String image;
+  final String category;
+  final String title;
+  final int prepMinutes;
+  final double cost;
+  final int calories;
+  final String satiety;
 
   @override
   State<MealDetailsPage> createState() => _MealDetailsPageState();
 }
 
 class _MealDetailsPageState extends State<MealDetailsPage> {
-  String image = 'assets/images/food.jpeg';
-  String category = 'BALANCED PLATE • QUICK PREP';
+  late String image;
+  late String category;
   String tier = 'Tier 1 Energy';
-  String title = 'Mediterranean Herb Salmon & Quinoa Bowl';
+  late String title;
   String description =
       'Zesty lemon-oregano glazed fillet nestled over warm quinoa, wilted baby greens, and crisp garden cucumbers.';
-  String satiety = 'High Satiety';
-  int prepMinutes = 15;
-  double cost = 3.85;
-  int calories = 480;
+  late String satiety;
+  late int prepMinutes;
+  late double cost;
+  late int calories;
 
   int protein = 38;
   int fats = 16;
@@ -91,9 +109,37 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
   Color lightBlue = const Color(0xFFE2E7FF);
   Color brown = const Color(0xFF7A4A00);
 
+  @override
+  void initState() {
+    super.initState();
+    image = widget.image;
+    category = widget.category;
+    title = widget.title;
+    prepMinutes = widget.prepMinutes;
+    cost = widget.cost;
+    calories = widget.calories;
+    satiety = widget.satiety;
+  }
+
   String money(double value) {
     return '\$' + value.toStringAsFixed(2);
   }
+
+  Widget macroCard(
+    String emoji,
+    String label,
+    int grams,
+    int ratio,
+    Color color,
+  ) => MealMacroCard(
+    emoji: emoji,
+    label: label,
+    grams: grams,
+    ratio: ratio,
+    color: color,
+    navy: navy,
+    trackColor: lightBlue,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -119,18 +165,18 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
         ),
         title: Row(
           children: [
-            Container(
-              width: 34,
-              height: 34,
-              decoration: BoxDecoration(
-                color: const Color(0xFF22C55E),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Icon(Icons.bolt, color: Colors.white),
-            ),
+            // Container(
+            //   width: 34,
+            //   height: 34,
+            //   decoration: BoxDecoration(
+            //     color: const Color(0xFF22C55E),
+            //     borderRadius: BorderRadius.circular(10),
+            //   ),
+            //   child: const Icon(Icons.bolt, color: Colors.white),
+            // ),
             const SizedBox(width: 10),
             Text(
-              'Activity Detail',
+              'Meals Detail',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -173,9 +219,9 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                         right: 12,
                         child: Row(
                           children: [
-                            circleIcon(Icons.favorite_border),
+                            MealCircleIcon(icon: Icons.favorite_border, color: navy),
                             const SizedBox(width: 8),
-                            circleIcon(Icons.share_outlined),
+                            MealCircleIcon(icon: Icons.share_outlined, color: navy),
                           ],
                         ),
                       ),
@@ -202,7 +248,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                 ),
                               ),
                               const SizedBox(width: 10),
-                              stepButton(Icons.remove, () {
+                              MealStepButton(icon: Icons.remove, background: lightBlue, foreground: navy, onTap: () {
                                 if (servings > 1) {
                                   setState(() {
                                     servings--;
@@ -219,7 +265,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                 ),
                               ),
                               const SizedBox(width: 12),
-                              stepButton(Icons.add, () {
+                              MealStepButton(icon: Icons.add, background: lightBlue, foreground: navy, onTap: () {
                                 setState(() {
                                   servings++;
                                 });
@@ -314,25 +360,25 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                   const SizedBox(height: 14),
                   Row(
                     children: [
-                      infoChip(
-                        Icons.timer_outlined,
-                        '$prepMinutes min prep',
-                        const Color(0xFFE3F5F2),
-                        teal,
+                      MealInfoChip(
+                        icon: Icons.timer_outlined,
+                        text: '$prepMinutes min prep',
+                        background: const Color(0xFFE3F5F2),
+                        foreground: teal,
                       ),
                       const SizedBox(width: 8),
-                      infoChip(
-                        Icons.payments_outlined,
-                        '${money(currentCost)} / serving',
-                        const Color(0xFFFFDDB8),
-                        brown,
+                      MealInfoChip(
+                        icon: Icons.payments_outlined,
+                        text: '${money(currentCost)} / serving',
+                        background: const Color(0xFFFFDDB8),
+                        foreground: brown,
                       ),
                       const SizedBox(width: 8),
-                      infoChip(
-                        Icons.local_fire_department_outlined,
-                        '$currentCalories kcal',
-                        lightBlue,
-                        navy,
+                      MealInfoChip(
+                        icon: Icons.local_fire_department_outlined,
+                        text: '$currentCalories kcal',
+                        background: lightBlue,
+                        foreground: navy,
                       ),
                     ],
                   ),
@@ -365,7 +411,19 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  if (hasSwap) swapCard(),
+                  if (hasSwap)
+                    MealSwapCard(
+                      savings: swapSavings,
+                      swapText: swapText,
+                      highlight: swapHighlight,
+                      swapped: swapApplied,
+                      money: money,
+                      navy: navy,
+                      brown: brown,
+                      green: green,
+                      onKeepOriginal: () => setState(() => swapApplied = false),
+                      onApplySwap: () => setState(() => swapApplied = true),
+                    ),
                   if (hasSwap) const SizedBox(height: 20),
                   Container(
                     padding: const EdgeInsets.all(4),
@@ -375,9 +433,27 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                     ),
                     child: Row(
                       children: [
-                        tabItem('Ingredients (${ingredients.length})', 0),
-                        tabItem('Steps (${steps.length})', 1),
-                        tabItem('Nutrition & Cost', 2),
+                        MealDetailTab(
+                          text: 'Ingredients (${ingredients.length})',
+                          index: 0,
+                          selectedIndex: selectedTab,
+                          onTap: (index) => setState(() => selectedTab = index),
+                          navy: navy,
+                        ),
+                        MealDetailTab(
+                          text: 'Steps (${steps.length})',
+                          index: 1,
+                          selectedIndex: selectedTab,
+                          onTap: (index) => setState(() => selectedTab = index),
+                          navy: navy,
+                        ),
+                        MealDetailTab(
+                          text: 'Nutrition & Cost',
+                          index: 2,
+                          selectedIndex: selectedTab,
+                          onTap: (index) => setState(() => selectedTab = index),
+                          navy: navy,
+                        ),
                       ],
                     ),
                   ),
@@ -385,14 +461,22 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                   if (selectedTab == 0)
                     Column(
                       children: [
-                        for (var item in ingredients) ingredientCard(item),
+                        for (var item in ingredients)
+                          MealIngredientCard(
+                            item: item,
+                            money: money,
+                            green: green,
+                            navy: navy,
+                            brown: brown,
+                          ),
                       ],
                     ),
                   if (selectedTab == 1)
                     Column(
                       children: [
                         for (int i = 0; i < steps.length; i++)
-                          whiteCard(
+                          MealWhiteCard(
+                            child:
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -420,14 +504,14 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                       ],
                     ),
                   if (selectedTab == 2)
-                    whiteCard(
-                      Column(
+                    MealWhiteCard(
+                      child: Column(
                         children: [
-                          infoRow('Calories', '$currentCalories kcal'),
-                          infoRow('Protein', '${currentProtein}g'),
-                          infoRow('Fats', '${currentFats}g'),
-                          infoRow('Carbs', '${currentCarbs}g'),
-                          infoRow('Cost per serving', money(currentCost)),
+                          MealInfoRow(label: 'Calories', value: '$currentCalories kcal', navy: navy),
+                          MealInfoRow(label: 'Protein', value: '${currentProtein}g', navy: navy),
+                          MealInfoRow(label: 'Fats', value: '${currentFats}g', navy: navy),
+                          MealInfoRow(label: 'Carbs', value: '${currentCarbs}g', navy: navy),
+                          MealInfoRow(label: 'Cost per serving', value: money(currentCost), navy: navy),
                         ],
                       ),
                     ),
@@ -504,383 +588,5 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
     );
   }
 
-  Widget circleIcon(IconData icon) {
-    return Container(
-      width: 42,
-      height: 42,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-      ),
-      child: Icon(icon, color: navy, size: 22),
-    );
-  }
-
-  Widget stepButton(IconData icon, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 26,
-        height: 26,
-        decoration: BoxDecoration(color: lightBlue, shape: BoxShape.circle),
-        child: Icon(icon, size: 16, color: navy),
-      ),
-    );
-  }
-
-  Widget infoChip(IconData icon, String text, Color bg, Color color) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 16, color: color),
-          const SizedBox(width: 4),
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget macroCard(
-    String emoji,
-    String label,
-    int grams,
-    int ratio,
-    Color color,
-  ) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('$emoji $label', style: TextStyle(fontSize: 12, color: navy)),
-            const SizedBox(height: 6),
-            Text(
-              '${grams}g',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: navy,
-              ),
-            ),
-            const SizedBox(height: 6),
-            LinearProgressIndicator(
-              value: ratio / 100,
-              minHeight: 6,
-              color: color,
-              backgroundColor: lightBlue,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              '$ratio% ratio',
-              style: const TextStyle(fontSize: 11, color: Colors.black54),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget swapCard() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFE6C7),
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF59E0B),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: const Icon(Icons.savings, color: Colors.white),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Smart Budget Swap',
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: navy,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFD28A),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            'Save ${money(swapSavings)}',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: brown,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      swapText,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    Text(
-                      swapHighlight,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: green,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    swapApplied = false;
-                  });
-                },
-                child: const Text(
-                  'Keep Original',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
-                ),
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  setState(() {
-                    swapApplied = true;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFF59E0B),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                ),
-                icon: Icon(swapApplied ? Icons.check : Icons.sync),
-                label: Text(
-                  swapApplied ? 'Swap Applied' : 'Apply Swap',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget tabItem(String text, int index) {
-    bool selected = selectedTab == index;
-
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            selectedTab = index;
-          });
-        },
-        child: Container(
-          height: 54,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: selected ? Colors.white : Colors.transparent,
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: selected ? FontWeight.bold : FontWeight.w600,
-              color: selected ? navy : Colors.black54,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget whiteCard(Widget child) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: child,
-    );
-  }
-
-  Widget ingredientCard(Map<String, dynamic> item) {
-    return whiteCard(
-      Column(
-        children: [
-          Row(
-            children: [
-              item['available'] == true
-                  ? CircleAvatar(
-                      radius: 14,
-                      backgroundColor: green,
-                      child: const Icon(
-                        Icons.check,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                    )
-                  : Container(
-                      width: 28,
-                      height: 28,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black26, width: 2),
-                      ),
-                    ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item['name'],
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: navy,
-                      ),
-                    ),
-                    Text(
-                      item['detail'],
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                money(item['price']),
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: navy,
-                ),
-              ),
-            ],
-          ),
-          if (item['hint'] != null) ...[
-            const SizedBox(height: 12),
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF1EFFF),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.lightbulb_outline,
-                    size: 18,
-                    color: Color(0xFFF59E0B),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      item['hint'],
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: brown,
-                      ),
-                    ),
-                  ),
-                  Icon(Icons.swap_horiz, size: 20, color: brown),
-                ],
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget infoRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: const TextStyle(color: Colors.black54)),
-          Text(
-            value,
-            style: TextStyle(fontWeight: FontWeight.bold, color: navy),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
-void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MealDetailsPage(),
-    ),
-  );
-}
