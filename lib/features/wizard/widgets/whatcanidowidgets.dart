@@ -310,3 +310,18 @@ class ToDayMatches extends StatelessWidget {
     );
   }
 }
+class conicontext extends StatelessWidget{
+  final IconData ic;
+  final String text;
+  final Color? colort;
+   final Color? iconcolor;
+    final Color? textcolor;
+  conicontext({super.key,required this.ic,required this.text, this.colort,this.iconcolor,this.textcolor});
+  @override
+  Widget build(BuildContext context) {
+   return Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color:colort??Colors.white ),child: Padding(
+     padding: const EdgeInsets.all(5.0),
+     child: Row(spacing: 2,children: [Icon(ic,color:iconcolor ,),Text(text,style: TextStyle(color: textcolor),)],),
+   ),);
+  }
+}
