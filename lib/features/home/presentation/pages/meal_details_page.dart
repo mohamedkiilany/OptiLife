@@ -176,7 +176,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
             // ),
             const SizedBox(width: 10),
             Text(
-              'Meals Detail',
+              'Meal Details',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
