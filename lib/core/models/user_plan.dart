@@ -1,5 +1,5 @@
-import 'package:optilife_app/core/services/meal_plan.dart';
-import 'package:optilife_app/core/services/workout_plan.dart';
+import 'package:optilife_app/core/models/meal_plan.dart';
+import 'package:optilife_app/core/models/workout_plan.dart';
 
 class UserPlan {
   final WorkoutPlan workoutPlan;
