@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optilife_app/core/services/test_screen.dart';
 import 'package:optilife_app/features/wizard/screens/whatcanido.dart';
 
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ( MaterialApp(home: Whatcanido()));
+    return ( MaterialApp(home: TestPlanScreen()));
     } 
   }
 

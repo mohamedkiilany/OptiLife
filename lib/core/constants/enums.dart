@@ -37,3 +37,9 @@ enum FitnessLevel {
   intermediate,
   advanced,
 }
+enum MealType {
+  breakfast,
+  lunch,
+  snack,
+  dinner
+}
