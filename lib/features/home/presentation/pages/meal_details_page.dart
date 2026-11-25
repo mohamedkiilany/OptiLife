@@ -129,8 +129,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
               child: const Icon(Icons.bolt, color: Colors.white),
             ),
             const SizedBox(width: 10),
-            Text(
-              'Activity Detail',
+            Text('Activity Detail',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -874,13 +873,4 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MealDetailsPage(),
-    ),
-  );
 }
