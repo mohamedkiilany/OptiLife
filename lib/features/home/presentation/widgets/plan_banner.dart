@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
-import 'package:optilife_app/features/home/presentation/widgets/info-chips.dart';
+import 'package:optilife_app/features/home/presentation/widgets/info_chips.dart';
 
 class PlanBanner extends StatelessWidget {
   const PlanBanner({super.key});

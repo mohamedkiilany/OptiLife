@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:optilife_app/features/progress/presentation/controllers/progress
 import 'package:optilife_app/features/profile/data/save_step.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/goal_option_card.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 
 class GoalsScreen extends StatefulWidget {
   const GoalsScreen({super.key});
@@ -193,6 +195,9 @@ class _GoalsScreenState extends State<GoalsScreen> {
                 context.saveAndGo({
                   'goal': goalOptions[_selection.selectedIndex!].title,
                 }, AppRouter.availableTime);
+
+                context.read<SelectionCubit>().setGoal(goalOptions[_selection.selectedIndex!].title);
+             
               },
             ),
           ),

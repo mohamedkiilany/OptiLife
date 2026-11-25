@@ -201,7 +201,6 @@ class FoodAvaialbility extends StatelessWidget {
                         
                         return;
                       }
-
                       final user = FirebaseAuth.instance.currentUser!;
                       final wizardState = context
                           .read<wizard.SelectionCubit>()
@@ -233,6 +232,8 @@ class FoodAvaialbility extends StatelessWidget {
                           );
                         }
                       }
+
+                      // context.go(AppRouter.home);      
                     },
                   ),
                 ],

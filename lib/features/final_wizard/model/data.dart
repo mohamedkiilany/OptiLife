@@ -102,11 +102,11 @@ const ingredients = <Ingredient>[
 
 const initiallySelected = <String>{
   'Eggs',
-  'Canned Tuna / Chicken',
-  'Canned Chickpeas / Beans',
-  'Rice',
-  'Oats',
-  'Onions',
-  'Frozen Veggies',
-  'Potatoes',
+  // 'Canned Tuna / Chicken',
+  // 'Canned Chickpeas / Beans',
+  // 'Rice',
+  // 'Oats',
+  // 'Onions',
+  // 'Frozen Veggies',
+  // 'Potatoes',
 };

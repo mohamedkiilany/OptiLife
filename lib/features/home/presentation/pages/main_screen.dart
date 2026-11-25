@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:optilife_app/features/home/presentation/pages/home_page.dart';
 import 'package:optilife_app/features/home/presentation/widgets/custom_bottom_nav.dart';
+import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
+import 'package:optilife_app/features/wizard/screens/whatcanido.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> pages = [
     HomePage(),
-    PlanPage(),
+    WhatCanDo(),
     AssistantPage(),
     ProgressPage(),
     ProfilePage(),
@@ -38,25 +39,12 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Page'),
-    );
-  }
-}
-
 class ProgressPage extends StatelessWidget {
   const ProgressPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Progress Page'),
-    );
+    return const Center(child: Text('Progress Page'));
   }
 }
 
@@ -65,19 +53,15 @@ class AssistantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Assistant Page'),
-    );
+    return const Center(child: Text('Assistant Page'));
   }
 }
 
-class PlanPage extends StatelessWidget {
-  const PlanPage({super.key});
+// class PlanPage extends StatelessWidget {
+//   const PlanPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Plan Page'),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Center(child: Text('Plan Page'));
+//   }
+// }

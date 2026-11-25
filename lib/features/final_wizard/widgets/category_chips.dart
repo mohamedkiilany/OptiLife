@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/final_wizard/model/data.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
 class CategoryChips extends StatelessWidget {
   const CategoryChips({
@@ -45,23 +48,27 @@ class _CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return SelectionPressable(
+      selected: isSelected,
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        duration: SelectionStyle.duration,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: isSelected ? Color(0xFF0F5F55) : Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? Colors.white : Color(0xFF7B8794),
+          border: Border.all(
+            color: AppColors.badge,
           ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.muted)),
+            const SizedBox(width: 6),
+            SelectionMarker(selected: isSelected),
+          ],
         ),
       ),
     );

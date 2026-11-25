@@ -4,18 +4,19 @@ class SelectionState {
   final Set<String> environments;
   final String? equipment;
   final int? availableMinutes;
-
   final String? goal;
   final String? budget;
   final Set<String> dietPreferences;
-  final List<String> dislikes;
+  // final List<String> dislikes;
   final String? fitnessLevel;
   final String? sex;
   final int? age;
   final int? heightCm;
   final int? weightKg;
   final Set<String> ingredients;
-
+  final String? name;
+  final String? email;
+  final Set<String> dislikedFoods;
   SelectionState({
     required this.environments,
     this.equipment,
@@ -23,13 +24,16 @@ class SelectionState {
     this.goal,
     this.budget,
     this.dietPreferences = const {},
-    this.dislikes = const [],
+    // this.dislikes = const [],
     this.fitnessLevel,
     this.sex,
     this.age,
     this.heightCm,
     this.weightKg,
     this.ingredients = const {},
+    this.name,
+    this.email,
+    this.dislikedFoods = const {},
   });
 
   SelectionState copyWith({
@@ -41,13 +45,16 @@ class SelectionState {
     String? goal,
     String? budget,
     Set<String>? dietPreferences,
-    List<String>? dislikes,
+    // List<String>? dislikes,
     String? fitnessLevel,
     String? sex,
     int? age,
     int? heightCm,
     int? weightKg,
     Set<String>? ingredients,
+    String? name,
+    String? email,
+    Set<String>? dislikedFoods,
   }) {
     return SelectionState(
       environments: environments ?? this.environments,
@@ -58,13 +65,16 @@ class SelectionState {
       goal: goal ?? this.goal,
       budget: budget ?? this.budget,
       dietPreferences: dietPreferences ?? this.dietPreferences,
-      dislikes: dislikes ?? this.dislikes,
+      // dislikes: dislikes ?? this.dislikes,
       fitnessLevel: fitnessLevel ?? this.fitnessLevel,
       sex: sex ?? this.sex,
       age: age ?? this.age,
       heightCm: heightCm ?? this.heightCm,
       weightKg: weightKg ?? this.weightKg,
       ingredients: ingredients ?? this.ingredients,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      dislikedFoods: dislikedFoods ?? this.dislikedFoods,
     );
   }
 
@@ -79,7 +89,8 @@ class SelectionState {
       equipment: equipment,
       budget: budget,
       dietPreferences: dietPreferences.toList(),
-      dislikes: dislikes,
+      // dislikes == dislikedFoods.toList(),
+      dislikes: dislikedFoods.toList(),
       fitnessLevel: fitnessLevel,
       sex: sex,
       age: age,

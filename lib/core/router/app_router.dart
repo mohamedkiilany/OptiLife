@@ -5,18 +5,22 @@ import 'package:optilife_app/features/final_wizard/pages/fitness_baseline_page.d
 import 'package:optilife_app/features/final_wizard/pages/food_avaialbility.dart';
 import 'package:optilife_app/features/home/presentation/pages/main_screen.dart';
 import 'package:optilife_app/features/profile/data/profile_repository.dart';
+import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
+import 'package:optilife_app/features/wizard/screens/active_workout_session.dart';
+import 'package:optilife_app/features/wizard/screens/whatcanido.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_6.dart';
 import 'package:optilife_app/features/wizard/screens/wizard5.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_3.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_4.dart';
+import 'package:optilife_app/features/wizard/screens/wizard_ai_generate.dart';
+import 'package:optilife_app/features/workout/presentation/pages/workout_details.dart';
 
 import '../../features/onboarding/presentation/pages/onboarding_screen.dart';
 import '../../features/onboarding/presentation/pages/splash_screen.dart';
 import '../../features/auth/presentation/pages/signin_screen.dart';
 import '../../features/auth/presentation/pages/signup_screen.dart';
-import '../../features/home/presentation/pages/home_page.dart';
 
 class AppRouter {
   static const String splash = '/splash';
@@ -33,7 +37,13 @@ class AppRouter {
   static const String food = '/food';
   static const String fitness = '/fitness';
   static const String kitchen = '/kitchen';
-   static const Set<String> _publicRoutes = {splash, onboarding, signin, signup};
+  static const Set<String> _publicRoutes = {splash, onboarding, signin, signup};
+  static const String generate = '/generate';
+  static const String profile = '/profile';
+  static const String workout = '/workout';
+  static const String plan = '/plan';
+  static const String timer = '/timer';
+
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -92,6 +102,17 @@ redirect: (context, state) async {
         path: kitchen,
         builder: (context, state) => const FoodAvaialbility(),
       ),
+      GoRoute(
+        path: generate,
+        builder: (context, state) => const WizardAiGenerate(),
+      ),
+      GoRoute(path: profile, builder: (context, state) => const ProfilePage()),
+      GoRoute(
+        path: workout,
+        builder: (context, state) => const WorkoutDetailsPage(),
+      ),
+      GoRoute(path: plan, builder: (context, state) => const WhatCanDo()),
+      GoRoute(path: timer, builder: (context, state) => ActiveWorkoutSession()),
     ],
   );
 }

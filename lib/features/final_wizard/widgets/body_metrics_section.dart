@@ -5,6 +5,9 @@ import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/final_wizard/widgets/info_box.dart';
 import 'package:optilife_app/features/final_wizard/widgets/metric_input_field.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
+
 
 class BodyMetricsSection extends StatelessWidget {
   const BodyMetricsSection({super.key});
@@ -90,7 +93,7 @@ class BodyMetricsSection extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(4),
               width: double.infinity,
-              height: 44,
+              height: 52,
               decoration: BoxDecoration(
                 color: const Color(0xFFF1EFF6),
                 borderRadius: BorderRadius.circular(12),
@@ -100,34 +103,38 @@ class BodyMetricsSection extends StatelessWidget {
                   final isSelected = state.sex == sex;
 
                   return Expanded(
-                    child: GestureDetector(
+                    child: SelectionPressable(
+                      selected: isSelected,
                       onTap: () {
                         context.read<SelectionCubit>().setBodyMetrics(
                           sex: sex,
                         );
                       },
                       child: Container(
-                        height: 36,
+                        height: 44,
                         decoration: BoxDecoration(
-                          color: isSelected
-                              ? Colors.white
-                              : Colors.transparent,
+
+                          // color: isSelected
+                          //     ? Colors.white
+                          //     : Colors.transparent,
+                          color: Colors.transparent,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Center(
-                          child: Text(
-                            sex,
-                            style: TextStyle(
-                              color: isSelected
-                                  ? const Color(0xFF131B2E)
-                                  : const Color(0xFF586558),
-                              fontWeight: isSelected
-                                  ? FontWeight.w700
-                                  : FontWeight.w500,
-                              fontSize: 12,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              sex,
+                              style: TextStyle(
+                                color: AppColors.darkText,
+                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                                fontSize: 12,
+                              ),
                             ),
+                            const SizedBox(width: 4),
+                            SelectionMarker(selected: isSelected),
+                          ],
                           ),
-                        ),
                       ),
                     ),
                   );

@@ -144,6 +144,7 @@ class _BudgetState extends State<Budget> {
                 }
                 context.read<SelectionCubit>().setBudget(selectedBudget!);
                context.saveAndGo({'budget': selectedBudget}, AppRouter.diet);
+
               },
             ),
           ],

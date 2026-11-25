@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:optilife_app/features/progress/presentation/widgets/progress_con
 import 'package:optilife_app/features/wizard/widgets/dislike_section.dart';
 import 'package:optilife_app/features/wizard/widgets/dite_preference_section.dart';
 import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 
 class Dietry extends StatefulWidget {
   const Dietry({super.key});
@@ -92,7 +94,9 @@ class _DietryState extends State<Dietry> {
                       },
                     ),
                     const SizedBox(height: 16),
-                    DislikeSection(),
+                    DislikeSection(
+                      onChanged: context.read<SelectionCubit>().setDislikedFoods,
+                    ),
                     const SizedBox(height: 16),
                     const _InfoCard(
                       icon: Icons.sync,
@@ -124,6 +128,8 @@ class _DietryState extends State<Dietry> {
                 context.saveAndGo({
                   'dietPreferences': _selectedPreferences.toList(),
                 }, AppRouter.fitness);
+                context.read<SelectionCubit>().setDietPreferences(_selectedPreferences);
+            
               },
             ),
           ],

@@ -9,6 +9,7 @@ class AppColors {
   static const Color selectedCardIcon = Color(0XFFD3F3DF);
   static const Color screenchipBg = Color(0XFF99EFE5);
   static const Color screenChipText = Color(0XFF006E66);
+  static const Color textWhite = Colors.white;
 
   static const Color primaryGreen = Color(0xFF22C55E);
   static const Color primaryTeal = Color(0xFF0F766E);

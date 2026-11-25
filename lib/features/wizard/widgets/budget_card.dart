@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
 class BudgetCard extends StatelessWidget {
   final String title;
@@ -28,24 +30,15 @@ class BudgetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(24),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
+    return SelectionPressable(
+      selected: isSelected,
+      onTap: onTap,
+      child: AnimatedContainer(
+          duration: SelectionStyle.duration,
           width: double.infinity,
           margin: const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: isSelected ? AppColors.lightGreen : Colors.transparent,
-              width: 2.5,
-            ),
-          ),
+          decoration: SelectionStyle.card(radius: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -77,13 +70,8 @@ class BudgetCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  CircleAvatar(
-                    radius: 18,
-                    backgroundColor: isSelected ?AppColors.lightGreen  : const Color(0xFFE0E4FF),
-                    child: isSelected
-                        ? const Icon(Icons.check, color: AppColors.bgLight, size: 20)
-                        : null,
-                  ),
+                  const SizedBox(width: 8),
+                  SelectionMarker(selected: isSelected),
                 ],
               ),
               const SizedBox(height: 12),
@@ -118,7 +106,6 @@ class BudgetCard extends StatelessWidget {
               ],
             ],
           ),
-        ),
       ),
     );
   }

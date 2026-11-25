@@ -5,6 +5,23 @@ import 'package:optilife_app/features/wizard/cubit/selection_state.dart';
 class SelectionCubit extends Cubit<SelectionState> {
   SelectionCubit() : super(SelectionState(environments: {}));
 
+
+  void setAccount({required String name, required String email}) => emit(
+        state.copyWith(name: name.trim(), email: email.trim()),
+      );
+
+  void setEnvironments(Set<String> environments) => emit(
+        state.copyWith(environments: Set.unmodifiable(environments)),
+      );
+
+  void setEquipment(String equipment) =>
+      emit(state.copyWith(equipment: equipment));
+
+  void setDislikedFoods(Set<String> foods) => emit(
+        state.copyWith(dislikedFoods: Set.unmodifiable(foods)),
+      );
+
+
   void selectEquipment(String selection) {
     if (state.equipment == selection) {
       emit(state.copyWith(removeEquipment: true));
@@ -39,7 +56,9 @@ class SelectionCubit extends Cubit<SelectionState> {
     emit(state.copyWith(removeAvailableMinutes: true));
   }
 
-
+  // void skipBudget() {
+  //   emit(state.copyWith(removeBudget: true));
+  // }
 
   void setGoal(String goal) => emit(state.copyWith(goal: goal));
 
@@ -49,7 +68,7 @@ class SelectionCubit extends Cubit<SelectionState> {
       emit(state.copyWith(dietPreferences: {...preferences}));
 
   void setDislikes(List<String> dislikes) =>
-      emit(state.copyWith(dislikes: [...dislikes]));
+      emit(state.copyWith(dislikedFoods: Set.unmodifiable(dislikes)));
 
   void setFitnessLevel(String level) =>
       emit(state.copyWith(fitnessLevel: level));
@@ -66,7 +85,6 @@ class SelectionCubit extends Cubit<SelectionState> {
   void setIngredients(Set<String> ingredients) =>
       emit(state.copyWith(ingredients: {...ingredients}));
 
-  
   void loadFromProfile(UserProfile p) {
     emit(SelectionState(
       environments: p.environments.toSet(),
@@ -75,7 +93,7 @@ class SelectionCubit extends Cubit<SelectionState> {
       goal: p.goal,
       budget: p.budget,
       dietPreferences: p.dietPreferences.toSet(),
-      dislikes: p.dislikes,
+      dislikedFoods: p.dislikes.toSet(),
       fitnessLevel: p.fitnessLevel,
       sex: p.sex,
       age: p.age,
@@ -85,6 +103,5 @@ class SelectionCubit extends Cubit<SelectionState> {
     ));
   }
 
- 
   void reset() => emit(SelectionState(environments: {}));
 }

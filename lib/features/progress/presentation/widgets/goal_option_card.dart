@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/progress/models/progress_option.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
 class GoalOptionCard extends StatelessWidget {
   const GoalOptionCard({
@@ -15,24 +17,18 @@ class GoalOptionCard extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
+  Widget build(BuildContext context) => SelectionPressable(
+    selected: selected,
     onTap: onTap,
     child: AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
+      duration: SelectionStyle.duration,
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: selected ? const Color(0xFFE8F8EC) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: selected ? AppColors.primaryGreen : Colors.transparent,
-          width: 2,
-        ),
-      ),
+      decoration: SelectionStyle.card(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _OptionIcon(option: option, selected: selected),
+          _OptionIcon(option: option),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -89,19 +85,18 @@ class GoalOptionCard extends StatelessWidget {
 }
 
 class _OptionIcon extends StatelessWidget {
-  const _OptionIcon({required this.option, required this.selected});
+  const _OptionIcon({required this.option});
   final ProgressOption option;
-  final bool selected;
 
   @override
   Widget build(BuildContext context) => Container(
     width: 56,
     height: 56,
     decoration: BoxDecoration(
-      color: selected ? AppColors.primaryGreen : const Color(0xFFE0E4FF),
+      color: AppColors.badge,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Icon(option.icon, color: selected ? Colors.white : AppColors.muted),
+    child: Icon(option.icon, color: AppColors.muted),
   );
 }
 
@@ -138,15 +133,5 @@ class _SelectionMark extends StatelessWidget {
   final bool selected;
 
   @override
-  Widget build(BuildContext context) => Container(
-    width: 28,
-    height: 28,
-    decoration: BoxDecoration(
-      color: selected ? AppColors.primaryGreen : AppColors.badge,
-      shape: BoxShape.circle,
-    ),
-    child: selected
-        ? const Icon(Icons.check, color: AppColors.white, size: 18)
-        : null,
-  );
+  Widget build(BuildContext context) => SelectionMarker(selected: selected);
 }

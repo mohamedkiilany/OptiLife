@@ -5,6 +5,7 @@ import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/auth/cubit/auth_cubit.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_form_widgets.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -287,59 +288,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   },
                 ),
                 const SizedBox(height: 15),
-                // Row(
-                //   children: [
-                //     const Expanded(child: Divider(color: Color(0xFFDDE3FF))),
-                //     Padding(
-                //       padding: const EdgeInsets.symmetric(horizontal: 14),
-                //       child: Text(
-                //         'Or Register With',
-                //         style: TextStyle(
-                //           color: const Color(0xFF718071),
-                //           fontWeight: FontWeight.w600,
-                //         ),
-                //       ),
-                //     ),
-                //     const Expanded(child: Divider(color: Color(0xFFDDE3FF))),
-                //   ],
-                // ),
-
-                // SizedBox(
-                //   width: double.infinity,
-                //   height: 68,
-                //   child: OutlinedButton(
-                //     onPressed: () {},
-                //     style: OutlinedButton.styleFrom(
-                //       backgroundColor: Colors.white,
-                //       foregroundColor: AppColors.navy,
-                //       side: BorderSide.none,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(17),
-                //       ),
-                //     ),
-                //     child: const Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Text(
-                //           'G',
-                //           style: TextStyle(
-                //             fontSize: 26,
-                //             fontWeight: FontWeight.w800,
-                //             color: Color(0xFF4285F4),
-                //           ),
-                //         ),
-                //         SizedBox(width: 12),
-                //         Text(
-                //           'Sign up with Google',
-                //           style: TextStyle(
-                //             fontSize: 18,
-                //             fontWeight: FontWeight.w700,
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
+             
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/features/final_wizard/model/data.dart';
+import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
 class IngredientList extends StatelessWidget {
   const IngredientList({
@@ -58,25 +61,28 @@ class IngredientChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = isSelected ? Colors.white : Color(0xFF1F2933);
+    const textColor = AppColors.darkText;
 
-    return GestureDetector(
+    return SelectionPressable(
+      selected: isSelected,
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: SelectionStyle.duration,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: isSelected ? Color(0xFF22C55E) : Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: isSelected
-              ? null
-              : const [
-                  BoxShadow(
-                    color: Color(0x0F000000),
-                    blurRadius: 6,
-                    offset: Offset(0, 2),
-                  ),
-                ],
+          border: Border.all(
+            color: AppColors.badge,
+            width: 1,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x0F000000),
+              blurRadius: 6,
+              offset: Offset(0, 2),
+            ),
+          ],
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -91,10 +97,8 @@ class IngredientChip extends StatelessWidget {
                 color: textColor,
               ),
             ),
-            if (isSelected) ...[
-              const SizedBox(width: 8),
-              const Icon(Icons.check, size: 18, color: Colors.white),
-            ],
+            const SizedBox(width: 8),
+            SelectionMarker(selected: isSelected),
           ],
         ),
       ),

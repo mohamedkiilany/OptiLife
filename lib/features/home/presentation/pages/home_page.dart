@@ -3,14 +3,15 @@ import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:optilife_app/features/home/presentation/widgets/calorie_progress_card.dart';
 import 'package:optilife_app/features/home/presentation/widgets/custom_button.dart';
-import 'package:optilife_app/features/home/presentation/widgets/home_appBar.dart';
+import 'package:optilife_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:optilife_app/features/home/presentation/widgets/hydration_card.dart';
-import 'package:optilife_app/features/home/presentation/widgets/info-chips.dart';
-import 'package:optilife_app/features/home/presentation/widgets/plan-banner.dart';
+import 'package:optilife_app/features/home/presentation/widgets/info_chips.dart';
+import 'package:optilife_app/features/home/presentation/widgets/plan_banner.dart';
 import 'package:optilife_app/features/home/presentation/widgets/quick_solvers_section.dart';
 import 'package:optilife_app/features/home/presentation/widgets/recovery_tip_card.dart';
 import 'package:optilife_app/features/home/presentation/widgets/todays_constraints_card.dart';
 import 'package:optilife_app/features/home/presentation/widgets/todays_meals_section.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                "Good morning,\nMohamed ",
+                'Good morning,\nMohamed',
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: 30,
@@ -191,7 +192,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-                                          const SizedBox(height: 24),
+              const SizedBox(height: 24),
               const TodaysMealsSection(),
               const SizedBox(height: 24),
               const QuickSolversSection(),

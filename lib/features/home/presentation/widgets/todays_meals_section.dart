@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/home/presentation/pages/meal_details_page.dart';
 import 'package:optilife_app/features/home/presentation/widgets/meal_card.dart';
 
 class TodaysMealsSection extends StatelessWidget {
@@ -46,7 +47,7 @@ class TodaysMealsSection extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
-            children: const [
+            children: [
               MealCard(
                 imagePath: 'assets/images/greek_yogurt.png',
                 mealType: 'Breakfast',
@@ -56,8 +57,21 @@ class TodaysMealsSection extends StatelessWidget {
                 calories: 340,
                 tag: 'High Protein',
                 selected: true,
+                onDetailsTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const MealDetailsPage(
+                      image: 'assets/images/greek_yogurt.png',
+                      category: 'BREAKFAST • QUICK PREP',
+                      title: 'Greek Yogurt Berry Bowl',
+                      prepMinutes: 5,
+                      cost: 1.80,
+                      calories: 340,
+                      satiety: 'High Protein',
+                    ),
+                  ),
+                ),
               ),
-              SizedBox(width: 14),
+              const SizedBox(width: 14),
               MealCard(
                 imagePath: 'assets/images/tuna_chickpea.png',
                 mealType: 'Lunch',
@@ -66,6 +80,19 @@ class TodaysMealsSection extends StatelessWidget {
                 price: 2.40,
                 calories: 420,
                 tag: 'Budget Friendly',
+                onDetailsTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const MealDetailsPage(
+                      image: 'assets/images/tuna_chickpea.png',
+                      category: 'LUNCH • QUICK PREP',
+                      title: 'Tuna & Chickpea Salad',
+                      prepMinutes: 10,
+                      cost: 2.40,
+                      calories: 420,
+                      satiety: 'Budget Friendly',
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

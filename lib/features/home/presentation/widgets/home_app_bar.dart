@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:optilife_app/features/home/presentation/widgets/profile-avatar.dart';
+import 'package:optilife_app/features/home/presentation/widgets/profile_avatar.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
