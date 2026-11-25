@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/features/home/presentation/pages/home_page.dart';
 import 'package:optilife_app/features/home/presentation/widgets/custom_bottom_nav.dart';
+import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
 import 'package:optilife_app/features/wizard/screens/whatcanido.dart';
 
 class MainScreen extends StatefulWidget {
@@ -35,15 +36,6 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
     );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Profile Page'));
   }
 }
 

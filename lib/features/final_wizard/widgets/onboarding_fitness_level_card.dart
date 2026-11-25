@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
+import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
 class FitnessLevelCard extends StatelessWidget {
   final String id;
@@ -23,21 +25,15 @@ class FitnessLevelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return SelectionPressable(
+      selected: isChosen,
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
+        duration: SelectionStyle.duration,
         width: double.infinity,
         constraints: const BoxConstraints(minHeight: 121.13),
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isChosen ? const Color(0xFF20C765) : const Color(0xFFF1EFF6),
-            width: isChosen ? 3 : 1.5,
-          ),
-        ),
+        decoration: SelectionStyle.card(radius: 16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -75,10 +71,8 @@ class FitnessLevelCard extends StatelessWidget {
                         ),
 
                         const SizedBox(width: 6),
-                        SizedBox(
-                          width: 48,
-                          child: badge != null
-                              ? Container(
+                        if (badge != null)
+                          Container(
                                   alignment: Alignment.center,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 5,
@@ -98,9 +92,7 @@ class FitnessLevelCard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                )
-                              : const SizedBox.shrink(),
-                        ),
+                                ),
                       ],
                     ),
                   ),
@@ -111,7 +103,7 @@ class FitnessLevelCard extends StatelessWidget {
                     description,
                     style: const TextStyle(
                       color: AppColors.muted,
-                      fontSize: 13.5,
+                      fontSize: 13,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -119,14 +111,8 @@ class FitnessLevelCard extends StatelessWidget {
               ),
             ),
 
-            if (isChosen) ...[
-              const SizedBox(width: 6),
-              const Icon(
-                Icons.check_circle,
-                color: Color(0xFF20C765),
-                size: 30,
-              ),
-            ],
+            const SizedBox(width: 8),
+            SelectionMarker(selected: isChosen),
           ],
         ),
       ),

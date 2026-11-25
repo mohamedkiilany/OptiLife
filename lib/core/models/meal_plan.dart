@@ -1,5 +1,5 @@
 import 'package:optilife_app/core/constants/enums.dart';
-import 'package:optilife_app/core/services/meal.dart';
+import 'package:optilife_app/core/models/meal.dart';
 
 class MealPlan {
   final Meal breakfast;

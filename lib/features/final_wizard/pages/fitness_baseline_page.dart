@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:optilife_app/features/final_wizard/widgets/info_box.dart';
 import 'package:optilife_app/features/final_wizard/widgets/onboarding_fitness_level_card.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
 import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 
 class FitnessBaselinePage extends StatefulWidget {
   const FitnessBaselinePage({super.key});
@@ -16,13 +18,13 @@ class FitnessBaselinePage extends StatefulWidget {
 }
 
 class _FitnessBaselinePageState extends State<FitnessBaselinePage> {
-  final int step = 7;
+  // final int step = 7;
   String selectedFitnessLevel = 'beginner';
 
-  final Color primaryGreen = const Color(0xFF006E2F);
-  final Color selectedGreen = const Color(0xFF20C765);
-  final Color iconBackground = const Color(0xFFEAEDFF);
-  final Color textColor = const Color(0xFF192238);
+  // final Color primaryGreen = const Color(0xFF006E2F);
+  // final Color selectedGreen = const Color(0xFF20C765);
+  // final Color iconBackground = const Color(0xFFEAEDFF);
+  // final Color textColor = const Color(0xFF192238);
 
   @override
   Widget build(BuildContext context) {
@@ -168,6 +170,7 @@ class _FitnessBaselinePageState extends State<FitnessBaselinePage> {
                   );
                   return;
                 }
+                context.read<SelectionCubit>().setFitnessLevel(selectedFitnessLevel);
                 context.go(AppRouter.kitchen);
               },
             ),

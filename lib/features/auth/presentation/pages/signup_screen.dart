@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_form_widgets.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -259,6 +261,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     // }
                     //   context.go(AppRouter.goal);
                     // }
+                    context.read<SelectionCubit>().setAccount(
+                      name: _nameController.text.isEmpty ? 'Your name' : _nameController.text,
+                      email: _emailController.text.isEmpty ? 'Add your email' : _emailController.text,
+                    );
                     context.go(AppRouter.goal);
                   },
                 ),

@@ -199,7 +199,7 @@ class FoodAvaialbility extends StatelessWidget {
                         );
                         return;
                       }
-                      context.go(AppRouter.home);
+                      context.go(AppRouter.generate);
                     },
                   ),
                 ],

@@ -8,6 +8,7 @@ import 'package:optilife_app/features/wizard/screens/wizard_step_6.dart';
 import 'package:optilife_app/features/wizard/screens/wizard5.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_3.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_4.dart';
+import 'package:optilife_app/features/wizard/screens/wizard_ai_generate.dart';
 
 import '../../features/onboarding/presentation/pages/onboarding_screen.dart';
 import '../../features/onboarding/presentation/pages/splash_screen.dart';
@@ -29,6 +30,7 @@ class AppRouter {
   static const String food = '/food';
   static const String fitness = '/fitness';
   static const String kitchen = '/kitchen';
+  static const String generate = '/generate';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -63,6 +65,10 @@ class AppRouter {
       GoRoute(
         path: kitchen,
         builder: (context, state) => const FoodAvaialbility(),
+      ),
+      GoRoute(
+        path: generate,
+        builder: (context, state) => const WizardAiGenerate(),
       ),
     ],
   );
