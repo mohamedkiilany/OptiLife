@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
+import 'package:optilife_app/core/theme/app_colors.dart';
 
 class WorkoutDetailsPage extends StatefulWidget {
   const WorkoutDetailsPage({super.key});
@@ -483,18 +484,22 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Start Workout',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                      TextButton(
+                        onPressed: () => context.go(AppRouter.timer),
+                        child: Text(
+                          'Start Workout',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 8),
-                      Icon(Icons.arrow_forward),
+                      SizedBox(width: 0),
+                      Icon(Icons.arrow_forward,size: 25,),
                     ],
                   ),
                 ),
@@ -609,18 +614,9 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
               ],
             ),
           ),
-          const Icon(Icons.swap_horiz, color: Colors.black54),
+          // const Icon(Icons.swap_horiz, color: Colors.black54),
         ],
       ),
     );
   }
-}
-
-void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: WorkoutDetailsPage(),
-    ),
-  );
 }

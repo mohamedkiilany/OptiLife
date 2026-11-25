@@ -5,6 +5,7 @@ import 'package:optilife_app/features/home/presentation/pages/main_screen.dart';
 import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
+import 'package:optilife_app/features/wizard/screens/active_workout_session.dart';
 import 'package:optilife_app/features/wizard/screens/whatcanido.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_6.dart';
 import 'package:optilife_app/features/wizard/screens/wizard5.dart';
@@ -37,6 +38,7 @@ class AppRouter {
   static const String profile = '/profile';
   static const String workout = '/workout';
   static const String plan = '/plan';
+  static const String timer = '/timer';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -82,6 +84,7 @@ class AppRouter {
         builder: (context, state) => const WorkoutDetailsPage(),
       ),
       GoRoute(path: plan, builder: (context, state) => const WhatCanDo()),
+      GoRoute(path: timer, builder: (context, state) => ActiveWorkoutSession()),
     ],
   );
 }
