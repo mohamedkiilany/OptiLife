@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/profile/presentation/widgets/action_row.dart';
 import 'package:optilife_app/features/profile/presentation/widgets/profile_item.dart';
@@ -67,7 +69,6 @@ class ProfilePage extends StatelessWidget {
             return ListView(
               padding: const EdgeInsets.fromLTRB(18, 8, 18, 24),
               children: [
-                const SizedBox(height: 18),
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -81,6 +82,16 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
+                          IconButton(
+                            onPressed: () {
+                              context.go(AppRouter.home);
+                            },
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: AppColors.darkText,
+                            ),
+                          ),
+                          SizedBox(width: 10),
                           const CircleAvatar(
                             radius: 31,
                             backgroundColor: Color(0xFFD4F5E2),
@@ -365,7 +376,11 @@ class ProfilePage extends StatelessWidget {
     BuildContext context,
     SelectionState initial,
   ) async {
-    const locations = ['Home / Apartment', 'Commercial Gym', 'Outdoors & Parks'];
+    const locations = [
+      'Home / Apartment',
+      'Commercial Gym',
+      'Outdoors & Parks',
+    ];
     const equipmentOptions = [
       'None (Bodyweight Only)',
       'Dumbbells / Kettlebells',
@@ -407,60 +422,124 @@ class ProfilePage extends StatelessWidget {
                   DropdownButtonFormField<String>(
                     initialValue: selectedGoal,
                     isExpanded: true,
-                    items: goalOptions.map((option) => DropdownMenuItem(value: option.title, child: Text(option.title))).toList(),
-                    onChanged: (value) => setDialogState(() => selectedGoal = value!),
+                    items: goalOptions
+                        .map(
+                          (option) => DropdownMenuItem(
+                            value: option.title,
+                            child: Text(option.title),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setDialogState(() => selectedGoal = value!),
                   ),
                   _editorLabel('Time available each day'),
                   DropdownButtonFormField<int>(
-                    value: selectedMinutes,
-                    items: const [10, 20, 30, 45].map((minutes) => DropdownMenuItem(value: minutes, child: Text(minutes == 45 ? '45+ minutes' : '$minutes minutes'))).toList(),
-                    onChanged: (value) => setDialogState(() => selectedMinutes = value!),
+                    initialValue: selectedMinutes,
+                    items: const [10, 20, 30, 45]
+                        .map(
+                          (minutes) => DropdownMenuItem(
+                            value: minutes,
+                            child: Text(
+                              minutes == 45
+                                  ? '45+ minutes'
+                                  : '$minutes minutes',
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setDialogState(() => selectedMinutes = value!),
                   ),
                   _editorLabel('Workout locations'),
-                  ...locations.map((location) => CheckboxListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(location),
-                    value: selectedLocations.contains(location),
-                    onChanged: (checked) => setDialogState(() {
-                      if (checked == true) {
-                        selectedLocations.add(location);
-                      } else {
-                        selectedLocations.remove(location);
-                      }
-                    }),
-                  )),
+                  ...locations.map(
+                    (location) => CheckboxListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(location),
+                      value: selectedLocations.contains(location),
+                      onChanged: (checked) => setDialogState(() {
+                        if (checked == true) {
+                          selectedLocations.add(location);
+                        } else {
+                          selectedLocations.remove(location);
+                        }
+                      }),
+                    ),
+                  ),
                   _editorLabel('Equipment'),
                   DropdownButtonFormField<String>(
-                    value: selectedEquipment,
+                    initialValue: selectedEquipment,
                     isExpanded: true,
-                    items: equipmentOptions.map((value) => DropdownMenuItem(value: value, child: Text(value))).toList(),
-                    onChanged: (value) => setDialogState(() => selectedEquipment = value!),
+                    items: equipmentOptions
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setDialogState(() => selectedEquipment = value!),
                   ),
                   _editorLabel('Food budget'),
                   DropdownButtonFormField<String>(
-                    value: selectedBudget,
+                    initialValue: selectedBudget,
                     isExpanded: true,
-                    items: budgets.map((value) => DropdownMenuItem(value: value, child: Text(value))).toList(),
-                    onChanged: (value) => setDialogState(() => selectedBudget = value!),
+                    items: budgets
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setDialogState(() => selectedBudget = value!),
                   ),
                   _editorLabel('Dietary preferences (comma separated)'),
-                  TextField(controller: dietController, decoration: const InputDecoration(hintText: 'Halal, High protein')),
+                  TextField(
+                    controller: dietController,
+                    decoration: const InputDecoration(
+                      hintText: 'Halal, High protein',
+                    ),
+                  ),
                   _editorLabel('Foods to avoid (comma separated)'),
-                  TextField(controller: dislikeController, decoration: const InputDecoration(hintText: 'Cilantro, eggplant')),
+                  TextField(
+                    controller: dislikeController,
+                    decoration: const InputDecoration(
+                      hintText: 'Cilantro, eggplant',
+                    ),
+                  ),
                   _editorLabel('Fitness baseline'),
                   DropdownButtonFormField<String>(
-                    value: selectedFitness,
-                    items: fitnessLevels.map((value) => DropdownMenuItem(value: value, child: Text(value[0].toUpperCase() + value.substring(1)))).toList(),
-                    onChanged: (value) => setDialogState(() => selectedFitness = value!),
+                    initialValue: selectedFitness,
+                    items: fitnessLevels
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(
+                              value[0].toUpperCase() + value.substring(1),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setDialogState(() => selectedFitness = value!),
                   ),
                 ],
               ),
             ),
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('Cancel')),
-            FilledButton(onPressed: () => Navigator.pop(dialogContext, true), child: const Text('Save changes')),
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: const Text('Save changes'),
+            ),
           ],
         ),
       ),

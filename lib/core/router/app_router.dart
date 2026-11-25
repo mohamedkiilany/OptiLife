@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:optilife_app/features/final_wizard/pages/fitness_baseline_page.dart';
 import 'package:optilife_app/features/final_wizard/pages/food_avaialbility.dart';
 import 'package:optilife_app/features/home/presentation/pages/main_screen.dart';
+import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_6.dart';
@@ -31,6 +32,7 @@ class AppRouter {
   static const String fitness = '/fitness';
   static const String kitchen = '/kitchen';
   static const String generate = '/generate';
+  static const String profile = '/profile';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -70,6 +72,8 @@ class AppRouter {
         path: generate,
         builder: (context, state) => const WizardAiGenerate(),
       ),
+      GoRoute(path: profile,
+      builder: (context, state) => const ProfilePage(),)
     ],
   );
 }

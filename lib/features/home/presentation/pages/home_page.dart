@@ -12,6 +12,7 @@ import 'package:optilife_app/features/home/presentation/widgets/recovery_tip_car
 import 'package:optilife_app/features/home/presentation/widgets/todays_constraints_card.dart';
 import 'package:optilife_app/features/home/presentation/widgets/todays_meals_section.dart';
 
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   String get _formattedDate =>
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                "Good morning,\nMohamed ",
+                'Good morning,\nMohamed',
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: 30,
@@ -191,7 +192,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-                                          const SizedBox(height: 24),
+              const SizedBox(height: 24),
               const TodaysMealsSection(),
               const SizedBox(height: 24),
               const QuickSolversSection(),

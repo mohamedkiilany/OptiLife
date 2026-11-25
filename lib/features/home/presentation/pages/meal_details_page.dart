@@ -122,7 +122,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
   }
 
   String money(double value) {
-    return '\$' + value.toStringAsFixed(2);
+    return '\$${value.toStringAsFixed(2)}';
   }
 
   Widget macroCard(
@@ -219,9 +219,15 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                         right: 12,
                         child: Row(
                           children: [
-                            MealCircleIcon(icon: Icons.favorite_border, color: navy),
+                            MealCircleIcon(
+                              icon: Icons.favorite_border,
+                              color: navy,
+                            ),
                             const SizedBox(width: 8),
-                            MealCircleIcon(icon: Icons.share_outlined, color: navy),
+                            MealCircleIcon(
+                              icon: Icons.share_outlined,
+                              color: navy,
+                            ),
                           ],
                         ),
                       ),
@@ -248,13 +254,18 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                 ),
                               ),
                               const SizedBox(width: 10),
-                              MealStepButton(icon: Icons.remove, background: lightBlue, foreground: navy, onTap: () {
-                                if (servings > 1) {
-                                  setState(() {
-                                    servings--;
-                                  });
-                                }
-                              }),
+                              MealStepButton(
+                                icon: Icons.remove,
+                                background: lightBlue,
+                                foreground: navy,
+                                onTap: () {
+                                  if (servings > 1) {
+                                    setState(() {
+                                      servings--;
+                                    });
+                                  }
+                                },
+                              ),
                               const SizedBox(width: 12),
                               Text(
                                 '$servings',
@@ -265,11 +276,16 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                 ),
                               ),
                               const SizedBox(width: 12),
-                              MealStepButton(icon: Icons.add, background: lightBlue, foreground: navy, onTap: () {
-                                setState(() {
-                                  servings++;
-                                });
-                              }),
+                              MealStepButton(
+                                icon: Icons.add,
+                                background: lightBlue,
+                                foreground: navy,
+                                onTap: () {
+                                  setState(() {
+                                    servings++;
+                                  });
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -476,8 +492,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                       children: [
                         for (int i = 0; i < steps.length; i++)
                           MealWhiteCard(
-                            child:
-                            Row(
+                            child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CircleAvatar(
@@ -507,11 +522,31 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                     MealWhiteCard(
                       child: Column(
                         children: [
-                          MealInfoRow(label: 'Calories', value: '$currentCalories kcal', navy: navy),
-                          MealInfoRow(label: 'Protein', value: '${currentProtein}g', navy: navy),
-                          MealInfoRow(label: 'Fats', value: '${currentFats}g', navy: navy),
-                          MealInfoRow(label: 'Carbs', value: '${currentCarbs}g', navy: navy),
-                          MealInfoRow(label: 'Cost per serving', value: money(currentCost), navy: navy),
+                          MealInfoRow(
+                            label: 'Calories',
+                            value: '$currentCalories kcal',
+                            navy: navy,
+                          ),
+                          MealInfoRow(
+                            label: 'Protein',
+                            value: '${currentProtein}g',
+                            navy: navy,
+                          ),
+                          MealInfoRow(
+                            label: 'Fats',
+                            value: '${currentFats}g',
+                            navy: navy,
+                          ),
+                          MealInfoRow(
+                            label: 'Carbs',
+                            value: '${currentCarbs}g',
+                            navy: navy,
+                          ),
+                          MealInfoRow(
+                            label: 'Cost per serving',
+                            value: money(currentCost),
+                            navy: navy,
+                          ),
                         ],
                       ),
                     ),
@@ -587,6 +622,4 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
       ),
     );
   }
-
 }
-
