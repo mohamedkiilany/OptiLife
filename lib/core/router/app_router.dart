@@ -5,11 +5,13 @@ import 'package:optilife_app/features/home/presentation/pages/main_screen.dart';
 import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
+import 'package:optilife_app/features/wizard/screens/whatcanido.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_6.dart';
 import 'package:optilife_app/features/wizard/screens/wizard5.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_3.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_step_4.dart';
 import 'package:optilife_app/features/wizard/screens/wizard_ai_generate.dart';
+import 'package:optilife_app/features/workout/presentation/pages/workout_details.dart';
 
 import '../../features/onboarding/presentation/pages/onboarding_screen.dart';
 import '../../features/onboarding/presentation/pages/splash_screen.dart';
@@ -33,6 +35,8 @@ class AppRouter {
   static const String kitchen = '/kitchen';
   static const String generate = '/generate';
   static const String profile = '/profile';
+  static const String workout = '/workout';
+  static const String plan = '/plan';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -72,8 +76,12 @@ class AppRouter {
         path: generate,
         builder: (context, state) => const WizardAiGenerate(),
       ),
-      GoRoute(path: profile,
-      builder: (context, state) => const ProfilePage(),)
+      GoRoute(path: profile, builder: (context, state) => const ProfilePage()),
+      GoRoute(
+        path: workout,
+        builder: (context, state) => const WorkoutDetailsPage(),
+      ),
+      GoRoute(path: plan, builder: (context, state) => const WhatCanDo()),
     ],
   );
 }

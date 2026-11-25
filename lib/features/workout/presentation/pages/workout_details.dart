@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:optilife_app/core/router/app_router.dart';
 
 class WorkoutDetailsPage extends StatefulWidget {
   const WorkoutDetailsPage({super.key});
@@ -18,8 +20,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
   int calories = 185;
   bool quietMode = true;
 
-  String coachMessage =
-      "Calibrated for Mohamed's 20m window & zero equipment.";
+  String coachMessage = "Calibrated for Mohamed's 20m window & zero equipment.";
 
   String impactLevel = 'Low Impact';
   List<Map<String, dynamic>> muscles = [
@@ -93,7 +94,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
         elevation: 0,
         scrolledUnderElevation: 0,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.go(AppRouter.home),
           icon: Icon(Icons.arrow_back, color: navy),
         ),
         title: Text(
@@ -105,21 +106,21 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-                isSaved = !isSaved;
-              });
-            },
-            icon: Icon(
-              isSaved ? Icons.bookmark : Icons.bookmark_border,
-              color: navy,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.share_outlined, color: navy),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       isSaved = !isSaved;
+          //     });
+          //   },
+          // icon: Icon(
+          //   isSaved ? Icons.bookmark : Icons.bookmark_border,
+          //   color: navy,
+          // ),
+          // ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(Icons.share_outlined, color: navy),
+          // ),
         ],
       ),
       body: Column(
@@ -157,8 +158,8 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                               Icons.local_fire_department_outlined,
                               '$calories kcal',
                             ),
-                            if (quietMode)
-                              heroChip(Icons.volume_off, 'Quiet Mode'),
+                            // if (quietMode)
+                            //   heroChip(Icons.volume_off, 'Quiet Mode'),
                           ],
                         ),
                       ),
@@ -196,10 +197,14 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                           ),
                           child: Row(
                             children: [
-                              CircleAvatar(
-                                backgroundColor: const Color(0xFFCFF2DC),
-                                child: Icon(Icons.chevron_left, color: green),
-                              ),
+                              // CircleAvatar(
+                              //   backgroundColor: const Color(0xFFCFF2DC),
+                              //   child: IconButton(
+                              //     onPressed: () => Navigator.pop(context),
+                              //     color: green,
+                              //     icon: Icon(Icons.chevron_left_outlined),
+                              //   ),
+                              // ),
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Column(

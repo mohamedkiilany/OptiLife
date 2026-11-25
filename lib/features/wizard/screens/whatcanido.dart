@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/wizard/screens/workout_preview_screen.dart';
 import 'package:optilife_app/features/wizard/widgets/activity_match_controls.dart';
@@ -49,7 +51,7 @@ class _WhatCanDoState extends State<WhatCanDo> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               _MatcherIntro(),
+              _MatcherIntro(),
               const SizedBox(height: 14),
               ActivityMatchControls(
                 selectedTime: selectedTime,
@@ -60,12 +62,11 @@ class _WhatCanDoState extends State<WhatCanDo> {
                 onSurpriseMe: _surpriseMe,
               ),
               const SizedBox(height: 25),
-               _MatchesHeading(),
+              _MatchesHeading(),
               const SizedBox(height: 13),
               WorkoutMatchCard(
                 title: '20-Min No-Jumper Full Body Flow',
-                description:
-                    'Zero jumping, apartment-friendly sequence crafted to protect joints while maximizing fat oxidation and stamina.',
+                description: 'Zero jumping, apartment-friendly sequence crafted to protect joints while maximizing fat oxidation and stamina.',
                 image: 'assets/images/workout_at_home.jpg',
                 duration: '20 min',
                 location: 'Home',
@@ -75,20 +76,20 @@ class _WhatCanDoState extends State<WhatCanDo> {
                 topMatch: true,
                 phases: true,
                 buttonColor: AppColors.darkGreen,
-                onPreview: () => _openWorkoutPreview(
-                  context,
-                  title: '20-Min No-Jumper Full Body Flow',
-                  description:
-                      'Zero jumping, apartment-friendly sequence crafted to protect joints while maximizing fat oxidation and stamina.',
-                  duration: '20 min',
-                  image: 'assets/images/workout_at_home.jpg',
-                ),
+                onPreview: () => context.go(AppRouter.workout),
+                // _openWorkoutPreview(
+                //   context,
+                //   title: '20-Min No-Jumper Full Body Flow',
+                //   description:
+                //       'Zero jumping, apartment-friendly sequence crafted to protect joints while maximizing fat oxidation and stamina.',
+                //   duration: '20 min',
+                //   image: 'assets/images/workout_at_home.jpg',
+                // ),
               ),
               const SizedBox(height: 13),
               WorkoutMatchCard(
                 title: 'Express Dumbbell Upper Sculpt',
-                description:
-                    'Targeted triceps, shoulders, and postural stabilizers designed for fast metabolic conditioning.',
+                description: 'Targeted triceps, shoulders, and postural stabilizers designed for fast metabolic conditioning.',
                 image: 'assets/images/workout.png',
                 duration: '20 min',
                 location: 'Home',
@@ -100,8 +101,7 @@ class _WhatCanDoState extends State<WhatCanDo> {
                 onPreview: () => _openWorkoutPreview(
                   context,
                   title: 'Express Dumbbell Upper Sculpt',
-                  description:
-                      'Targeted triceps, shoulders, and postural stabilizers designed for fast metabolic conditioning.',
+                  description: 'Targeted triceps, shoulders, and postural stabilizers designed for fast metabolic conditioning.',
                   duration: '20 min',
                   image: 'assets/images/workout.png',
                 ),
@@ -109,8 +109,7 @@ class _WhatCanDoState extends State<WhatCanDo> {
               const SizedBox(height: 13),
               WorkoutMatchCard(
                 title: 'Deep Core & Posture Reset',
-                description:
-                    'Unwind desk tension, activate dormant transversus abdominis, and align spinal discs without heavy strain.',
+                description: 'Unwind desk tension, activate dormant transversus abdominis, and align spinal discs without heavy strain.',
                 duration: '15 min',
                 location: 'Floor mat only',
                 equipment: 'Gentle Flow',
@@ -123,8 +122,7 @@ class _WhatCanDoState extends State<WhatCanDo> {
                 onPreview: () => _openWorkoutPreview(
                   context,
                   title: 'Deep Core & Posture Reset',
-                  description:
-                      'Unwind desk tension, activate dormant transversus abdominis, and align spinal discs without heavy strain.',
+                  description: 'Unwind desk tension, activate dormant transversus abdominis, and align spinal discs without heavy strain.',
                   duration: '15 min',
                 ),
               ),

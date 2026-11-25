@@ -83,9 +83,7 @@ class ProfilePage extends StatelessWidget {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () {
-                              context.go(AppRouter.home);
-                            },
+                            onPressed: () => context.go(AppRouter.home),
                             icon: Icon(
                               Icons.arrow_back,
                               color: AppColors.darkText,
