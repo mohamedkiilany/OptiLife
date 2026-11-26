@@ -137,8 +137,8 @@ class SelectCard extends StatelessWidget {
                     spacing: 10,
                     runSpacing: 8,
                     children: [
-                      if (firstChip != null) firstChip!,
-                      if (secondChip != null) secondChip!,
+                      ?firstChip,
+                      ?secondChip,
 
                   // Row(
                   //   children: [

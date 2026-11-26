@@ -10,7 +10,7 @@ import 'package:optilife_app/features/final_wizard/widgets/onboarding_fitness_le
 import 'package:optilife_app/features/profile/data/save_step.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
 import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
-import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
+
 
 class FitnessBaselinePage extends StatefulWidget {
   const FitnessBaselinePage({super.key});

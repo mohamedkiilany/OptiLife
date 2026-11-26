@@ -5,7 +5,7 @@ import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/auth/cubit/auth_cubit.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_form_widgets.dart';
-import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
+
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

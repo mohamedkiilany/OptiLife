@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optilife_app/core/theme/app_colors.dart';
 
 class MetricInputField extends StatelessWidget {
   final String label;
@@ -26,7 +27,7 @@ class MetricInputField extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                color: Color(0xFF3D4A3D),  
+                color: AppColors.muted,  
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),

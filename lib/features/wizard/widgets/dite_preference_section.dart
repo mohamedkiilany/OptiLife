@@ -8,16 +8,16 @@ class DitePreferenceSection extends StatefulWidget {
   final ValueChanged<Set<String>> onSelectionChanged;
 
   static const _preferences = [
-    '♧ No preference',
-    '🥩 Halal',
-    '💪 High protein',
-    '🥗 Vegetarian',
-    '🥑 Low carb',
-    '🌱 Vegan',
-    '🥛 Dairy-free',
-    '🌾 Gluten-free',
-    '⚠️ Nut allergy',
-    '🐟 Pescatarian',
+    '  ♧ No preference',
+    '  🥩 Halal',
+    '  💪 High protein',
+    '  🥗 Vegetarian',
+    ' 🥑 Low carb',
+    ' 🌱 Vegan',
+    ' 🥛 Dairy-free',
+    '  🌾 Gluten-free',
+    '  ⚠️ Nut allergy',
+    '  🐟 Pescatarian',
   ];
 
   @override
@@ -26,8 +26,6 @@ class DitePreferenceSection extends StatefulWidget {
 
 class _DitePreferenceSectionState extends State<DitePreferenceSection> {
   final Set<String> _selectedPreferences = {};
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +52,7 @@ class _DitePreferenceSectionState extends State<DitePreferenceSection> {
         ),
         const SizedBox(height: 10),
         Wrap(
-          spacing: 8,
+          spacing: 6,
           runSpacing: 8,
           children: DitePreferenceSection._preferences.map((preference) {
             final selected = _selectedPreferences.contains(preference);
@@ -69,7 +67,9 @@ class _DitePreferenceSectionState extends State<DitePreferenceSection> {
                     _selectedPreferences.add(preference);
                   }
                 });
-                widget.onSelectionChanged(Set.unmodifiable(_selectedPreferences));
+                widget.onSelectionChanged(
+                  Set.unmodifiable(_selectedPreferences),
+                );
               },
             );
           }).toList(),

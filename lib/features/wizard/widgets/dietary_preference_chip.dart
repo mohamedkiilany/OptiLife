@@ -22,9 +22,9 @@ class DietaryPreferenceChip extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
           duration: SelectionStyle.duration,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: isSelected ? const Color.fromARGB(255, 3, 74, 30) : AppColors.white,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: AppColors.badge,
@@ -36,9 +36,9 @@ class DietaryPreferenceChip extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                  color: AppColors.darkText,
-                  fontSize: 14,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                  color: isSelected ? AppColors.white: AppColors.darkText,
+                  fontSize: 15,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                 ),
               ),
               const SizedBox(width: 6),

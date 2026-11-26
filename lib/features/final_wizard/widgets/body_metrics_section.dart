@@ -114,10 +114,11 @@ class BodyMetricsSection extends StatelessWidget {
                         height: 44,
                         decoration: BoxDecoration(
 
-                          // color: isSelected
-                          //     ? Colors.white
-                          //     : Colors.transparent,
-                          color: Colors.transparent,
+                          color: isSelected
+                              // ? Colors.white
+                              ? AppColors.white
+                              : Colors.transparent,
+                          // color: Colors.transparent,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
@@ -127,12 +128,12 @@ class BodyMetricsSection extends StatelessWidget {
                               sex,
                               style: TextStyle(
                                 color: AppColors.darkText,
-                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                                fontSize: 12,
+                                fontWeight: isSelected ? FontWeight.w900 : FontWeight.w500,
+                                fontSize: 13,
                               ),
                             ),
                             const SizedBox(width: 4),
-                            SelectionMarker(selected: isSelected),
+                            // SelectionMarker(selected: isSelected),
                           ],
                           ),
                       ),
@@ -151,7 +152,7 @@ class BodyMetricsSection extends StatelessWidget {
                   child: MetricInputField(
                     label: 'Age',
                     unit: 'yrs',
-                    initialValue: state.age?.toString() ?? '',
+                    initialValue: (state.age ?? 28).toString(),
                     onChanged: (value) {
                       context.read<SelectionCubit>().setBodyMetrics(
                         age: int.tryParse(value),
@@ -166,7 +167,7 @@ class BodyMetricsSection extends StatelessWidget {
                   child: MetricInputField(
                     label: 'Height',
                     unit: 'cm',
-                    initialValue: state.heightCm?.toString() ?? '',
+                    initialValue: (state.heightCm ?? 178).toString(),
                     onChanged: (value) {
                       context.read<SelectionCubit>().setBodyMetrics(
                         heightCm: int.tryParse(value),
@@ -181,7 +182,7 @@ class BodyMetricsSection extends StatelessWidget {
                   child: MetricInputField(
                     label: 'Weight',
                     unit: 'kg',
-                    initialValue: state.weightKg?.toString() ?? '',
+                    initialValue: (state.weightKg ?? 76).toString(),
                     onChanged: (value) {
                       context.read<SelectionCubit>().setBodyMetrics(
                         weightKg: int.tryParse(value),

@@ -3,7 +3,15 @@ import 'package:optilife_app/features/profile/model/user_profile.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_state.dart';
 
 class SelectionCubit extends Cubit<SelectionState> {
-  SelectionCubit() : super(SelectionState(environments: {}));
+  SelectionCubit()
+    : super(
+        SelectionState(
+          environments: {},
+          age: 28,
+          heightCm: 178,
+          weightKg: 76,
+        ),
+      );
 
 
   void setAccount({required String name, required String email}) => emit(
@@ -105,5 +113,12 @@ class SelectionCubit extends Cubit<SelectionState> {
     ));
   }
 
-  void reset() => emit(SelectionState(environments: {}));
+  void reset() => emit(
+    SelectionState(
+      environments: {},
+      age: 28,
+      heightCm: 178,
+      weightKg: 76,
+    ),
+  );
 }
