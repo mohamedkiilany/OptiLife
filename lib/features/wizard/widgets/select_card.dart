@@ -117,16 +117,16 @@ class SelectCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundColor: isSelected
-                            ? AppColors.lightGreen
-                            : AppColors.lightBlueBox,
-                        child: isSelected
-                            ? Icon(Icons.check, color: Colors.white)
-                            : null,
+                      // CircleAvatar(
+                      //   radius: 15,
+                      //   backgroundColor: isSelected
+                      //       ? AppColors.lightGreen
+                      //       : AppColors.lightBlueBox,
+                      //   child: isSelected
+                      //       ? Icon(Icons.check, color: Colors.white)
+                      //       : null,
 
-                      ),
+                      // ),
                       const SizedBox(width: 8),
                       SelectionMarker(selected: isSelected),
                     ],

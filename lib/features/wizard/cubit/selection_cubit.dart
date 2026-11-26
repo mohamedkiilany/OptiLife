@@ -87,6 +87,8 @@ class SelectionCubit extends Cubit<SelectionState> {
 
   void loadFromProfile(UserProfile p) {
     emit(SelectionState(
+      name: p.name,
+      email: p.email,
       environments: p.environments.toSet(),
       equipment: p.equipment,
       availableMinutes: p.availableMinutes,

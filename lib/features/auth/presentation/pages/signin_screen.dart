@@ -99,6 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   
                     case AuthStatus.failure:
                     case AuthStatus.resetSent:
+                    case AuthStatus.resetting:
                       _snack(state.message ?? '');
                   
                     case AuthStatus.initial:

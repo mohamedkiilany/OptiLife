@@ -10,6 +10,7 @@ enum AuthStatus {
   initial,
   loading,
   success,
+  resetting,
   failure,
   resetSent,
 }
@@ -107,27 +108,25 @@ class AuthCubit extends Cubit<AuthState> {
 
   // Reset Password
   Future<void> sendPasswordReset(String email) async {
-    emit(AuthState(status: AuthStatus.loading));
-
-    try {
-      await authRepository.sendPasswordReset(email);
-
-      emit(AuthState(
-        status: AuthStatus.resetSent,
-        message: 'Password reset email sent. Check your inbox.',
-      ));
-    } on FirebaseAuthException catch (e) {
-      emit(AuthState(
-        status: AuthStatus.failure,
-        message: authMessage(e.code),
-      ));
-    } catch (e) {
-      emit(AuthState(
-        status: AuthStatus.failure,
-        message: 'Something went wrong. Please try again.',
-      ));
+  emit(AuthState(status: AuthStatus.resetting));
+  const sentMsg =
+      'If an account exists for this email, a reset link has been sent. Check your inbox and spam folder.';
+  try {
+    await authRepository.sendPasswordReset(email);
+    emit(AuthState(status: AuthStatus.resetSent, message: sentMsg));
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      emit(AuthState(status: AuthStatus.resetSent, message: sentMsg));
+    } else {
+      emit(AuthState(status: AuthStatus.failure, message: authMessage(e.code)));
     }
+  } catch (_) {
+    emit(AuthState(
+      status: AuthStatus.failure,
+      message: 'Something went wrong. Please try again.',
+    ));
   }
+}
 
   // Logout
   Future<void> signOut() async {
