@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:intl/intl.dart';
@@ -12,11 +13,16 @@ import 'package:optilife_app/features/home/presentation/widgets/recovery_tip_car
 import 'package:optilife_app/features/home/presentation/widgets/todays_constraints_card.dart';
 import 'package:optilife_app/features/home/presentation/widgets/todays_meals_section.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   String get _formattedDate =>
       DateFormat('EEEE, MMM d').format(DateTime.now()).toUpperCase();
+  String get _greeting {
+    final h = DateTime.now().hour;
+    if (h < 12) return 'Good morning';
+    if (h < 17) return 'Good afternoon';
+    return 'Good evening';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +52,23 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              Text(
-                'Good morning,\nMohamed',
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 30,
-                  height: 1.15,
-                ),
+              StreamBuilder<User?>(
+                stream: FirebaseAuth.instance.userChanges(),
+                builder: (context, snap) {
+                  final full = snap.data?.displayName?.trim() ?? '';
+                  final first = full.isEmpty ? '' : full.split(' ').first;
+                  return Text(
+                    // 'Good morning,\nMohamed',
+                    first.isEmpty ? '$_greeting,' : '$_greeting,\n$first',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 30,
+                      height: 1.15,
+                    ),
+                  );
+                },
               ),
+
               const SizedBox(height: 8),
               const Text(
                 'Ready for sustainable wellness made for your real routine?',

@@ -1,25 +1,39 @@
+import 'package:optilife_app/features/profile/model/user_profile.dart';
+
 class SelectionState {
   final Set<String> environments;
   final String? equipment;
   final int? availableMinutes;
-  final String? name;
-  final String? email;
   final String? goal;
   final String? budget;
   final Set<String> dietPreferences;
-  final Set<String> dislikedFoods;
+  // final List<String> dislikes;
   final String? fitnessLevel;
+  final String? sex;
+  final int? age;
+  final int? heightCm;
+  final int? weightKg;
+  final Set<String> ingredients;
+  final String? name;
+  final String? email;
+  final Set<String> dislikedFoods;
   SelectionState({
     required this.environments,
     this.equipment,
     this.availableMinutes,
-    this.name,
-    this.email,
     this.goal,
     this.budget,
     this.dietPreferences = const {},
-    this.dislikedFoods = const {},
+    // this.dislikes = const [],
     this.fitnessLevel,
+    this.sex,
+    this.age,
+    this.heightCm,
+    this.weightKg,
+    this.ingredients = const {},
+    this.name,
+    this.email,
+    this.dislikedFoods = const {},
   });
 
   SelectionState copyWith({
@@ -28,13 +42,19 @@ class SelectionState {
     bool removeEquipment = false,
     int? availableMinutes,
     bool removeAvailableMinutes = false,
-    String? name,
-    String? email,
     String? goal,
     String? budget,
     Set<String>? dietPreferences,
-    Set<String>? dislikedFoods,
+    // List<String>? dislikes,
     String? fitnessLevel,
+    String? sex,
+    int? age,
+    int? heightCm,
+    int? weightKg,
+    Set<String>? ingredients,
+    String? name,
+    String? email,
+    Set<String>? dislikedFoods,
   }) {
     return SelectionState(
       environments: environments ?? this.environments,
@@ -42,13 +62,42 @@ class SelectionState {
       availableMinutes: removeAvailableMinutes
           ? null
           : availableMinutes ?? this.availableMinutes,
-      name: name ?? this.name,
-      email: email ?? this.email,
       goal: goal ?? this.goal,
       budget: budget ?? this.budget,
       dietPreferences: dietPreferences ?? this.dietPreferences,
-      dislikedFoods: dislikedFoods ?? this.dislikedFoods,
+      // dislikes: dislikes ?? this.dislikes,
       fitnessLevel: fitnessLevel ?? this.fitnessLevel,
+      sex: sex ?? this.sex,
+      age: age ?? this.age,
+      heightCm: heightCm ?? this.heightCm,
+      weightKg: weightKg ?? this.weightKg,
+      ingredients: ingredients ?? this.ingredients,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      dislikedFoods: dislikedFoods ?? this.dislikedFoods,
+    );
+  }
+
+  
+  UserProfile toProfile({required String name, required String email}) {
+    return UserProfile(
+      name: name,
+      email: email,
+      goal: goal,
+      availableMinutes: availableMinutes,
+      environments: environments.toList(),
+      equipment: equipment,
+      budget: budget,
+      dietPreferences: dietPreferences.toList(),
+      // dislikes == dislikedFoods.toList(),
+      dislikes: dislikedFoods.toList(),
+      fitnessLevel: fitnessLevel,
+      sex: sex,
+      age: age,
+      heightCm: heightCm,
+      weightKg: weightKg,
+      ingredients: ingredients.toList(),
+      onboardingCompleted: true,
     );
   }
 }

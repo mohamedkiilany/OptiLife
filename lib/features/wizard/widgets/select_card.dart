@@ -38,6 +38,29 @@ class SelectCard extends StatelessWidget {
     bool isSelected =
         (cubit.state.environments.contains(title) ||
         cubit.state.equipment == title);
+    // return AnimatedContainer(
+    //   duration: Duration(milliseconds: 300),
+    //   margin: EdgeInsets.symmetric(vertical: 8),
+    //   padding: EdgeInsets.all(20),
+    //   decoration: BoxDecoration(
+    //     color: isSelected ? Colors.white : AppColors.unSelectedCard,
+    //     borderRadius: BorderRadius.circular(20),
+    //     boxShadow: [
+    //       BoxShadow(
+    //         color: Colors.black.withValues(alpha: isSelected ? 0.2 : 0.08),
+    //         blurRadius: 10,
+    //         offset: const Offset(0, 6),
+    //       ),
+    //     ],
+    //   ),
+    //   child: InkWell(
+    //     onTap: () {
+    //       if (type == SelectType.environments) {
+    //         cubit.selectEnvironments(title);
+    //       } else {
+    //         cubit.selectEquipment(title);
+    //       }
+    //     },
     return SelectionPressable(
       selected: isSelected,
       onTap: () {
@@ -70,6 +93,9 @@ class SelectCard extends StatelessWidget {
                 height: 70,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
+                  // color: isSelected
+                  //     ? AppColors.selectedCardIcon
+                  //     : AppColors.lightBlueBox,
                   color: AppColors.badge,
                 ),
                 child: Icon(icon, size: 40),
@@ -91,17 +117,34 @@ class SelectCard extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // CircleAvatar(
+                      //   radius: 15,
+                      //   backgroundColor: isSelected
+                      //       ? AppColors.lightGreen
+                      //       : AppColors.lightBlueBox,
+                      //   child: isSelected
+                      //       ? Icon(Icons.check, color: Colors.white)
+                      //       : null,
+
+                      // ),
                       const SizedBox(width: 8),
                       SelectionMarker(selected: isSelected),
                     ],
                   ),
                   Text(description),
                   SizedBox(height: 10),
-                  Row(
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 8,
                     children: [
-                      ?firstChip,
-                      if (secondChip != null) SizedBox(width: 20),
-                      ?secondChip,
+                      if (firstChip != null) firstChip!,
+                      if (secondChip != null) secondChip!,
+
+                  // Row(
+                  //   children: [
+                  //     ?firstChip,
+                  //     if (secondChip != null) SizedBox(width: 20),
+                  //     ?secondChip,
                     ],
                   ),
                 ],

@@ -5,7 +5,7 @@ import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/progress/data/progress_options.dart';
 import 'package:optilife_app/features/progress/presentation/controllers/progress_selection_controller.dart';
-
+import 'package:optilife_app/features/profile/data/save_step.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/goal_option_card.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
@@ -192,8 +192,12 @@ class _GoalsScreenState extends State<GoalsScreen> {
                   );
                   return;
                 }
+                context.saveAndGo({
+                  'goal': goalOptions[_selection.selectedIndex!].title,
+                }, AppRouter.availableTime);
+
                 context.read<SelectionCubit>().setGoal(goalOptions[_selection.selectedIndex!].title);
-                context.go(AppRouter.availableTime);
+             
               },
             ),
           ),

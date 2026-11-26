@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // BlocListener / BlocBuilder / context.read
 import 'package:go_router/go_router.dart';
+import 'package:optilife_app/features/auth/cubit/auth_cubit.dart'; // AuthCubit + AuthState + AuthStatus
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart'; 
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/auth/presentation/widgets/auth_form_widgets.dart';
@@ -25,6 +28,46 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
+  
+  void _snack(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: Text(message),
+        backgroundColor: AppColors.primaryTeal,
+      ),
+    );
+  }
+
+  bool get _emailLooksValid {
+    final email = _emailController.text.trim();
+    return email.contains('@') && email.contains('.');
+  }
+
+  void _submit() {
+    if (!_emailLooksValid) {
+      _snack('Enter a valid email address');
+      return;
+    }
+    if (_passwordController.text.isEmpty) {
+      _snack('Enter your password');
+      return;
+    }
+    context.read<AuthCubit>().signIn(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+  }
+
+  
+  void _forgotPassword() {
+    if (!_emailLooksValid) {
+      _snack('Type your email first, then tap Forgot password');
+      return;
+    }
+    context.read<AuthCubit>().sendPasswordReset(_emailController.text.trim());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +78,37 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+            
+              BlocListener<AuthCubit, AuthState>(
+                listenWhen: (previous, current) =>
+                    previous.status != current.status,
+                listener: (context, state) {
+                  switch (state.status) {
+                    case AuthStatus.success:
+                      final profile = state.profile;
+                    
+                      if (profile != null) {
+                        context.read<SelectionCubit>().loadFromProfile(profile);
+                      }
+                     
+                      context.go(
+                        profile?.onboardingCompleted == true
+                            ? AppRouter.home
+                            : AppRouter.goal,
+                      );
+                  
+                    case AuthStatus.failure:
+                    case AuthStatus.resetSent:
+                    case AuthStatus.resetting:
+                      _snack(state.message ?? '');
+                  
+                    case AuthStatus.initial:
+                    case AuthStatus.loading:
+                      break;
+                  }
+                },
+                child: const SizedBox.shrink(),
+              ),
               const SizedBox(height: 16),
               Image.asset("assets/images/logo.png", scale: 2), // fake logo
               const SizedBox(height: 8),
@@ -128,22 +202,27 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   const Spacer(),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   child: const Text(
-                  //     'Forgot password?',
-                  //     style: TextStyle(
-                  //       color: AppColors.primaryTeal,
-                  //       fontWeight: FontWeight.w600,
-                  //     ),
-                  //   ),
-                  // ),
+                
+                  TextButton(
+                    onPressed: _forgotPassword,
+                    child: const Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                        color: AppColors.primaryTeal,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
-              AuthPrimaryButton(
-                label: 'Log In',
-                onPressed: () => context.go(AppRouter.home),
+              
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) => AuthPrimaryButton(
+                  label: 'Log In',
+                  isLoading: state.status == AuthStatus.loading,
+                  onPressed: _submit,
+                ),
               ),
               const SizedBox(height: 20),
               // Row(

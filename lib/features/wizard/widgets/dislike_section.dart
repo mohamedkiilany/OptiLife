@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/profile/data/save_step.dart';
 
 class DislikeSection extends StatefulWidget {
   const DislikeSection({super.key, this.onChanged});
 
   final ValueChanged<Set<String>>? onChanged;
+
 
   @override
   State<DislikeSection> createState() => _DislikeSectionState();
@@ -34,7 +36,9 @@ class _DislikeSectionState extends State<DislikeSection> {
       _dislikedIngredients.add(ingredient);
       _ingredientController.clear();
     });
+    // context.saveStep({'dislikes': _dislikedIngredients});
     widget.onChanged?.call(Set.unmodifiable(_dislikedIngredients));
+
   }
 
   @override
@@ -119,6 +123,10 @@ class _DislikeSectionState extends State<DislikeSection> {
                   label: Text(ingredient),
                   onDeleted: () {
                     setState(() => _dislikedIngredients.remove(ingredient));
+
+                  //   context.saveStep({'dislikes': _dislikedIngredients});
+                  // },
+
                     widget.onChanged?.call(Set.unmodifiable(_dislikedIngredients));
                   },
                 );

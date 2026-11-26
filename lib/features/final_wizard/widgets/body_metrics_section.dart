@@ -1,24 +1,23 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/final_wizard/widgets/info_box.dart';
 import 'package:optilife_app/features/final_wizard/widgets/metric_input_field.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
 import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
-class BodyMetricsSection extends StatefulWidget {
+
+class BodyMetricsSection extends StatelessWidget {
   const BodyMetricsSection({super.key});
 
-  @override
-  State<BodyMetricsSection> createState() => _BodyMetricsSectionState();
-}
-
-class _BodyMetricsSectionState extends State<BodyMetricsSection> {
-  String selectedSex = 'Male';
-
-  final List<String> sexes = ['Male', 'Female', 'Other'];
+  final List<String> sexes = const ["Male", "Female", "Other"];
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<SelectionCubit>().state;
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -81,7 +80,11 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
             // Assigned Sex
             const Text(
               'Assigned Sex for Caloric Baseline',
-              style: TextStyle(color: AppColors.primaryTeal, fontSize: 14,fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: AppColors.primaryTeal,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
 
             const SizedBox(height: 10),
@@ -96,21 +99,24 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
-                children: List.generate(sexes.length, (index) {
-                  final sex = sexes[index];
-                  final isSelected = selectedSex == sex;
+                children: sexes.map((sex) {
+                  final isSelected = state.sex == sex;
 
                   return Expanded(
                     child: SelectionPressable(
                       selected: isSelected,
                       onTap: () {
-                        setState(() {
-                          selectedSex = sex;
-                        });
+                        context.read<SelectionCubit>().setBodyMetrics(
+                          sex: sex,
+                        );
                       },
                       child: Container(
                         height: 44,
                         decoration: BoxDecoration(
+
+                          // color: isSelected
+                          //     ? Colors.white
+                          //     : Colors.transparent,
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -132,7 +138,7 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
                       ),
                     ),
                   );
-                }),
+                }).toList(),
               ),
             ),
 
@@ -145,7 +151,12 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
                   child: MetricInputField(
                     label: 'Age',
                     unit: 'yrs',
-                    initialValue: '28',
+                    initialValue: state.age?.toString() ?? '',
+                    onChanged: (value) {
+                      context.read<SelectionCubit>().setBodyMetrics(
+                        age: int.tryParse(value),
+                      );
+                    },
                   ),
                 ),
 
@@ -155,7 +166,12 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
                   child: MetricInputField(
                     label: 'Height',
                     unit: 'cm',
-                    initialValue: '178',
+                    initialValue: state.heightCm?.toString() ?? '',
+                    onChanged: (value) {
+                      context.read<SelectionCubit>().setBodyMetrics(
+                        heightCm: int.tryParse(value),
+                      );
+                    },
                   ),
                 ),
 
@@ -165,7 +181,12 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
                   child: MetricInputField(
                     label: 'Weight',
                     unit: 'kg',
-                    initialValue: '76',
+                    initialValue: state.weightKg?.toString() ?? '',
+                    onChanged: (value) {
+                      context.read<SelectionCubit>().setBodyMetrics(
+                        weightKg: int.tryParse(value),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -174,7 +195,8 @@ class _BodyMetricsSectionState extends State<BodyMetricsSection> {
             const SizedBox(height: 15),
 
             InfoBox(
-              text: 'Used purely to calculate basal metabolic rate and safe exertion limits. Never shared.',
+              text:
+                  'Used purely to calculate basal metabolic rate and safe exertion limits. Never shared.',
               backgroundColor: const Color(0xffF2F3FF),
               icon: Icons.verified_user_outlined,
               iconSize: 17,

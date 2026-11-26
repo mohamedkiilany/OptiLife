@@ -3,15 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:optilife_app/core/router/app_router.dart';
 import 'package:optilife_app/core/theme/app_colors.dart';
+import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 import 'package:optilife_app/features/final_wizard/widgets/body_metrics_section.dart';
 import 'package:optilife_app/features/final_wizard/widgets/info_box.dart';
 import 'package:optilife_app/features/final_wizard/widgets/onboarding_fitness_level_card.dart';
+import 'package:optilife_app/features/profile/data/save_step.dart';
 import 'package:optilife_app/features/progress/presentation/widgets/progress_continue_button.dart';
 import 'package:optilife_app/features/wizard/widgets/wizard_screen_chip.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
 
 class FitnessBaselinePage extends StatefulWidget {
   const FitnessBaselinePage({super.key});
+  
 
   @override
   State<FitnessBaselinePage> createState() => _FitnessBaselinePageState();
@@ -170,8 +173,15 @@ class _FitnessBaselinePageState extends State<FitnessBaselinePage> {
                   );
                   return;
                 }
-                context.read<SelectionCubit>().setFitnessLevel(selectedFitnessLevel);
-                context.go(AppRouter.kitchen);
+                final s = context.read<SelectionCubit>().state;
+                context.saveAndGo({
+                  'fitnessLevel': selectedFitnessLevel,
+                  'sex': s.sex,
+                  'age': s.age,
+                  'heightCm': s.heightCm,
+                  'weightKg': s.weightKg,
+                }, AppRouter.kitchen);
+
               },
             ),
           ],
