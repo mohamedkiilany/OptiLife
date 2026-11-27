@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:optilife_app/core/constants/test_data.dart';
+import 'package:optilife_app/core/models/user_plan.dart';
 
 class UserProfile {
-  const UserProfile({
+  UserProfile({
     required this.name,
     required this.email,
     this.goal,
@@ -18,7 +20,8 @@ class UserProfile {
     this.weightKg,
     this.ingredients = const [],
     this.onboardingCompleted = false,
-  });
+    UserPlan? todayPlan,
+  }) : todayPlan = todayPlan ?? TestData.mockUserPlan;
 
   final String name;
   final String email;
@@ -36,6 +39,8 @@ class UserProfile {
   final int? weightKg;
   final List<String> ingredients;
   final bool onboardingCompleted;
+  // new user today's plan
+  final UserPlan? todayPlan;
 
   /// Firestore -> UserProfile
   /// map to obj
