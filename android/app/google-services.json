@@ -12,7 +12,12 @@
           "package_name": "com.example.optilife_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "564174409167-eut2ecqirv3rj10f6t2onr6ufefj9g8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBP6Er3DiuMUlJtJFa8KmCpj_ZButOJUxo"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564174409167-eut2ecqirv3rj10f6t2onr6ufefj9g8s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "564174409167-c3ubtvovnqvr68ueo7pgb7nkjr9krtgo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.optilifeApp"
+              }
+            }
+          ]
         }
       }
     }
