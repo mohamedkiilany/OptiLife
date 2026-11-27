@@ -56,22 +56,22 @@ class DefaultFirebaseOptions {
     projectId: 'optilife-36e6f',
     storageBucket: 'optilife-36e6f.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBG0tApqtq77O_q6aCVWgeUYw8EQSkdQ_o',
     appId: '1:564174409167:ios:a533d1a133984ef9ff96ba',
     messagingSenderId: '564174409167',
     projectId: 'optilife-36e6f',
     storageBucket: 'optilife-36e6f.firebasestorage.app',
+    iosClientId: '564174409167-c3ubtvovnqvr68ueo7pgb7nkjr9krtgo.apps.googleusercontent.com',
     iosBundleId: 'com.example.optilifeApp',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBG0tApqtq77O_q6aCVWgeUYw8EQSkdQ_o',
     appId: '1:564174409167:ios:a533d1a133984ef9ff96ba',
     messagingSenderId: '564174409167',
     projectId: 'optilife-36e6f',
     storageBucket: 'optilife-36e6f.firebasestorage.app',
+    iosClientId: '564174409167-c3ubtvovnqvr68ueo7pgb7nkjr9krtgo.apps.googleusercontent.com',
     iosBundleId: 'com.example.optilifeApp',
   );
 
