@@ -6,6 +6,10 @@ class Meal {
   final int calories;
   List<String> ingredients;
   final String preparation;
+  final double protein;
+  final double carbs;
+
+  final double fat;
 
   Meal({
     required this.type,
@@ -13,6 +17,9 @@ class Meal {
     required this.calories,
     required this.ingredients,
     required this.preparation,
+    required this.protein,
+    required this.carbs,
+    required this.fat,
   });
 
   factory Meal.fromJson(Map<String, dynamic> json) {
@@ -27,6 +34,9 @@ class Meal {
       calories: (json['calories'] as num).round(),
       ingredients: List<String>.from(json['ingredients']),
       preparation: json['preparation'] as String,
+      protein: (json['protein_g'] as num).toDouble(),
+      carbs: (json['carbs_g'] as num).toDouble(),
+      fat: (json['fat_g'] as num).toDouble(),
     );
   }
 }
