@@ -595,25 +595,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      ActionRow(
-                        icon: Icons.settings_outlined,
-                        title: 'Settings & Preferences',
-                        subtitle: 'Units, theme, notifications',
-                      ),
-                      ActionRow(
-                        icon: Icons.notifications_none,
-                        title: 'Reminders & Nudges',
-                        subtitle: 'Workout and meal reminders',
-                      ),
-                      ActionRow(
-                        icon: Icons.cloud_sync_outlined,
-                        title: 'Offline Data & Backup',
-                        subtitle: 'Your plan is available on this device',
-                      ),
-                      ActionRow(
-                        icon: Icons.support_agent,
-                        title: 'Help & Coaching Support',
-                        subtitle: 'Guidance for your wellness plan',
+                      GestureDetector(
+                        onTap: () => context.go(AppRouter.setting),
+                        child: ActionRow(
+                          icon: Icons.settings_outlined,
+                          title: 'Settings & Preferences',
+                          subtitle: 'Metric units and reminders',
+                        ),
                       ),
                       const SizedBox(height: 8),
                       SizedBox(

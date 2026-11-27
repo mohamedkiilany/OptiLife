@@ -6,6 +6,7 @@ import 'package:optilife_app/features/final_wizard/pages/food_avaialbility.dart'
 import 'package:optilife_app/features/home/presentation/pages/main_screen.dart';
 import 'package:optilife_app/features/profile/data/profile_repository.dart';
 import 'package:optilife_app/features/profile/presentation/pages/profile.dart';
+import 'package:optilife_app/features/profile/presentation/pages/settings.dart';
 import 'package:optilife_app/features/progress/presentation/pages/available_time_screen.dart';
 import 'package:optilife_app/features/progress/presentation/pages/goals_screen.dart';
 import 'package:optilife_app/features/wizard/screens/active_workout_session.dart';
@@ -44,33 +45,31 @@ class AppRouter {
   static const String plan = '/plan';
   static const String timer = '/timer';
   static const String main = '/main';
-
+  static const String setting = '/setting';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
     refreshListenable: GoRouterRefreshStream(
-  FirebaseAuth.instance.authStateChanges(),
-),
-redirect: (context, state) async {
-  final user = FirebaseAuth.instance.currentUser;
-  final location = state.matchedLocation;
+      FirebaseAuth.instance.authStateChanges(),
+    ),
+    redirect: (context, state) async {
+      final user = FirebaseAuth.instance.currentUser;
+      final location = state.matchedLocation;
 
-  
-  if (user == null) {
-    return _publicRoutes.contains(location) ? null : signin;
-  }
+      if (user == null) {
+        return _publicRoutes.contains(location) ? null : signin;
+      }
 
-  
-  if (location == onboarding) {
-    try {
-      final profile = await ProfileRepository().fetch(user.uid);
-      return profile?.onboardingCompleted == true ? home : goal;
-    } catch (_) {
-      return signin;
-    }
-  }
-  return null;
-},
+      if (location == onboarding) {
+        try {
+          final profile = await ProfileRepository().fetch(user.uid);
+          return profile?.onboardingCompleted == true ? home : goal;
+        } catch (_) {
+          return signin;
+        }
+      }
+      return null;
+    },
     routes: [
       GoRoute(path: splash, builder: (context, state) => const SplashScreen()),
       GoRoute(
@@ -115,6 +114,7 @@ redirect: (context, state) async {
       GoRoute(path: plan, builder: (context, state) => const WhatCanDo()),
       GoRoute(path: timer, builder: (context, state) => ActiveWorkoutSession()),
       GoRoute(path: main, builder: (context, state) => MainScreen()),
+      GoRoute(path: setting, builder: (context, state) => Settings()),
     ],
   );
 }

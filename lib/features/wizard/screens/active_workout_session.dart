@@ -104,22 +104,22 @@ class _ActiveWorkoutSessionState extends State<ActiveWorkoutSession> {
                         Column(
                           children: [
                             SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              children: [
-                                Text(
-                                  'Glute Bridge Holds',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 23,
-                                  ),
-                                ),
-                                // conicontext(colort: Color(0xFFEAEDFF),iconcolor: AppColors.darkGreen,
-                                //   ic: Icons.accessibility,
-                                //   text: 'Glutes • Core',
-                                // ),
-                              ],
-                            ),
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.baseline,
+                            //   children: [
+                            //     Text(
+                            //       'Glute Bridge Holds',
+                            //       style: TextStyle(
+                            //         fontWeight: FontWeight.bold,
+                            //         fontSize: 23,
+                            //       ),
+                            //     ),
+                            //     // conicontext(colort: Color(0xFFEAEDFF),iconcolor: AppColors.darkGreen,
+                            //     //   ic: Icons.accessibility,
+                            //     //   text: 'Glutes • Core',
+                            //     // ),
+                            //   ],
+                            // ),
                             SizedBox(height: 5),
                             Text(
                               'Squeeze glutes actively at top lock. Maintainneutral ribs and pelvis without hyperextending the lumbar spine.',

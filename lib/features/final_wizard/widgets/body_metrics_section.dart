@@ -5,7 +5,6 @@ import 'package:optilife_app/core/theme/app_colors.dart';
 import 'package:optilife_app/features/final_wizard/widgets/info_box.dart';
 import 'package:optilife_app/features/final_wizard/widgets/metric_input_field.dart';
 import 'package:optilife_app/features/wizard/cubit/selection_cubit.dart';
-import 'package:optilife_app/features/wizard/widgets/selection_style.dart';
 import 'package:optilife_app/features/wizard/widgets/selection_pressable.dart';
 
 
