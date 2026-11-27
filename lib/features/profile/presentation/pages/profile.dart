@@ -48,7 +48,7 @@ class ProfilePage extends StatefulWidget {
         ],
       ),
     );
-   Future.delayed(const Duration(milliseconds: 400), controller.dispose);
+    Future.delayed(const Duration(milliseconds: 400), controller.dispose);
     if (name == null || name.isEmpty || !context.mounted) return;
 
     final cubit = context.read<SelectionCubit>();
@@ -98,16 +98,18 @@ class ProfilePage extends StatefulWidget {
     );
     final goalTitles = goalOptions.map((o) => o.title).toList();
     const minuteOptions = [10, 20, 30, 45];
-    var selectedGoal =
-        goalTitles.contains(initial.goal) ? initial.goal! : goalTitles.first;
+    var selectedGoal = goalTitles.contains(initial.goal)
+        ? initial.goal!
+        : goalTitles.first;
     var selectedMinutes = minuteOptions.contains(initial.availableMinutes)
         ? initial.availableMinutes!
         : 20;
     var selectedEquipment = equipmentOptions.contains(initial.equipment)
         ? initial.equipment!
         : equipmentOptions.first;
-    var selectedBudget =
-        budgets.contains(initial.budget) ? initial.budget! : budgets.first;
+    var selectedBudget = budgets.contains(initial.budget)
+        ? initial.budget!
+        : budgets.first;
     var selectedFitness = fitnessLevels.contains(initial.fitnessLevel)
         ? initial.fitnessLevel!
         : fitnessLevels.first;
@@ -255,8 +257,8 @@ class ProfilePage extends StatefulWidget {
     final diet = _splitValues(dietController.text);
     final dislikes = _splitValues(dislikeController.text);
     Future.delayed(const Duration(milliseconds: 400), () {
-    dislikeController.dispose();
-    dietController.dispose();
+      dislikeController.dispose();
+      dietController.dispose();
     });
 
     if (saved != true || !context.mounted) return;
@@ -300,7 +302,6 @@ class ProfilePage extends StatefulWidget {
       .map((item) => item.trim())
       .where((item) => item.isNotEmpty)
       .toSet();
-
 }
 
 class _ProfilePageState extends State<ProfilePage> {
@@ -337,8 +338,8 @@ class _ProfilePageState extends State<ProfilePage> {
             final name = state.name?.isNotEmpty == true
                 ? state.name!
                 : (authUser?.displayName?.isNotEmpty == true
-                    ? authUser!.displayName!
-                    : 'Your profile');
+                      ? authUser!.displayName!
+                      : 'Your profile');
             final email = state.email?.isNotEmpty == true
                 ? state.email!
                 : (authUser?.email ?? 'Add your email');
@@ -403,7 +404,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () => context.go(AppRouter.home),
+                            onPressed: () => context.go(AppRouter.main),
                             icon: Icon(
                               Icons.arrow_back,
                               color: AppColors.darkText,
@@ -445,7 +446,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () => ProfilePage._editName(context, name),
+                            onPressed: () =>
+                                ProfilePage._editName(context, name),
                             icon: const Icon(
                               Icons.edit_outlined,
                               color: AppColors.darkText,
@@ -553,7 +555,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () => ProfilePage._editConstraints(context, state),
+                            onPressed: () =>
+                                ProfilePage._editConstraints(context, state),
                             child: const Text(
                               'Edit All',
                               style: TextStyle(

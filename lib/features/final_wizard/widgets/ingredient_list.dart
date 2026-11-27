@@ -70,12 +70,11 @@ class IngredientChip extends StatelessWidget {
         duration: SelectionStyle.duration,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: isSelected
+              ? const Color.fromARGB(255, 0, 106, 62)
+              : AppColors.white,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.badge,
-            width: 1,
-          ),
+
           boxShadow: const [
             BoxShadow(
               color: Color(0x0F000000),
@@ -94,11 +93,9 @@ class IngredientChip extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: textColor,
+                color: isSelected ? Colors.white : textColor,
               ),
             ),
-            const SizedBox(width: 8),
-            SelectionMarker(selected: isSelected),
           ],
         ),
       ),

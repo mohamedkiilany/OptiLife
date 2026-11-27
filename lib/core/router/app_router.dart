@@ -43,6 +43,7 @@ class AppRouter {
   static const String workout = '/workout';
   static const String plan = '/plan';
   static const String timer = '/timer';
+  static const String main = '/main';
 
 
   static final GoRouter router = GoRouter(
@@ -113,6 +114,7 @@ redirect: (context, state) async {
       ),
       GoRoute(path: plan, builder: (context, state) => const WhatCanDo()),
       GoRoute(path: timer, builder: (context, state) => ActiveWorkoutSession()),
+      GoRoute(path: main, builder: (context, state) => MainScreen()),
     ],
   );
 }
