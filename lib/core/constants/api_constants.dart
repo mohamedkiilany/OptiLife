@@ -1,3 +1,3 @@
 class ApiConstants {
-  static const String baseUrl = 'https://89a287042c71951882.gradio.live/';
+  static const String baseUrl = 'https://176f16afde491e9974.gradio.live/';
 }
