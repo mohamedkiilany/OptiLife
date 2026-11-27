@@ -6,9 +6,7 @@ class MealCard extends StatelessWidget {
   final String mealType;
   final String title;
   final int minutes;
-  final double price;
   final int calories;
-  final String tag;
   final bool selected;
   final VoidCallback? onTap;
   final VoidCallback? onDetailsTap;
@@ -19,9 +17,7 @@ class MealCard extends StatelessWidget {
     required this.mealType,
     required this.title,
     required this.minutes,
-    required this.price,
     required this.calories,
-    required this.tag,
     this.selected = false,
     this.onTap,
     this.onDetailsTap,
@@ -108,15 +104,6 @@ class MealCard extends StatelessWidget {
                       ),
                       const _Dot(),
                       Text(
-                        '\$${price.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                          color: AppColors.darkGreen,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 13,
-                        ),
-                      ),
-                      const _Dot(),
-                      Text(
                         '$calories kcal',
                         style: const TextStyle(
                             color: AppColors.muted, fontSize: 13),
@@ -130,21 +117,6 @@ class MealCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFE8EEFB),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          tag,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
                       GestureDetector(
                         onTap: onTap,
                         child: Container(

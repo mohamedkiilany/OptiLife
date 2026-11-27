@@ -4,11 +4,11 @@ class Meal {
   final MealType type;
   final String name;
   final int calories;
-  List<String> ingredients;
-  final String preparation;
+  final List<String> ingredients;
+  final List<String> steps;
+  final int prepMinutes;
   final double protein;
   final double carbs;
-
   final double fat;
 
   Meal({
@@ -16,7 +16,8 @@ class Meal {
     required this.name,
     required this.calories,
     required this.ingredients,
-    required this.preparation,
+    required this.steps,
+    required this.prepMinutes,
     required this.protein,
     required this.carbs,
     required this.fat,
@@ -33,7 +34,8 @@ class Meal {
       name: json['name'] as String,
       calories: (json['calories'] as num).round(),
       ingredients: List<String>.from(json['ingredients']),
-      preparation: json['preparation'] as String,
+      steps: List<String>.from(json['steps']),
+      prepMinutes: (json['prep_minutes'] as num).toInt(),
       protein: (json['protein_g'] as num).toDouble(),
       carbs: (json['carbs_g'] as num).toDouble(),
       fat: (json['fat_g'] as num).toDouble(),

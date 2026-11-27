@@ -58,28 +58,44 @@ class OptiLifeApiService {
   Future<UserPlan> generatePlan({
     required String goal,
     required String level,
-    required String calories,
+    required String sex,
+    required int age,
+    required num heightCm,
+    required num weightKg,
+    required String activity,
     required String time,
     required String environment,
     required String equipment,
     required String budget,
+    String diet = 'None',
     List<String> dislikes = const [],
+    List<String> pantry = const [],
+    String region = 'Egypt/Middle East',
     List<List<String>> recentMeals = const [],
     CancelToken? cancelToken,
   }) async {
     final dislikesStr = dislikes.isEmpty ? 'None' : dislikes.join(', ');
+    final pantryStr = pantry.isEmpty ? 'None' : pantry.join(', ');
     final recentMealsJson = jsonEncode(recentMeals);
+
     final prompt =
         'Goal: $goal. '
         'Level: $level. '
-        'Target Calories: $calories kcal. '
+        'Sex: $sex. '
+        'Age: $age. '
+        'Height: $heightCm cm. '
+        'Weight: $weightKg kg. '
+        'Activity: $activity. '
         'Time: $time mins. '
         'Environment: $environment. '
         'Equipment: $equipment. '
         'Budget: $budget. '
+        'Diet: $diet. '
         'Dislikes: $dislikesStr. '
-        'Region: Egypt/Middle East. '
+        'Pantry: $pantryStr. '
+        'Region: $region. '
         'Recent meals (newest day first): $recentMealsJson.';
-    return await fetchPlan(prompt, cancelToken: CancelToken());
+
+    return await fetchPlan(prompt, cancelToken: cancelToken);
   }
 }
